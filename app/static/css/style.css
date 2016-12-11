@@ -12,7 +12,7 @@ body {
 }
 
 #img{
-  background-color: #ffffff;
+  background-color: #eeeeee;
 }
 
 
@@ -153,12 +153,10 @@ body {
 #sec6 input[type=radio] + label{
   color: #37474f !important;
 }
-/* end of section 6*/
-
-
+/* end of section 6*/~
 @media (max-width: 600px){
   #buttoni{
-    margin:0 auto;;
+    margin:0 auto;
   }
  .container{
    width: 100%;
@@ -166,7 +164,7 @@ body {
 }
 @media (min-width: 600px){
   #buttoni{
-    margin:0 auto;;
+    margin:0 auto;
   }
  .container{
    width: 75%;
