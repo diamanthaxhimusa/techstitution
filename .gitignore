@@ -2,4 +2,4 @@ venv
 *~
 *.swp
 *.pyc
-app/logs
+logs
