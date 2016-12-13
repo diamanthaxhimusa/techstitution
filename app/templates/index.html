@@ -9,15 +9,37 @@
     <!-- jQuery is required by Materialize to function -->
     <script type="text/javascript" src="{{ url_for( 'static', filename='js/jquery-2.1.1.min.js') }}"></script>
     <script type="text/javascript" src="{{ url_for( 'static', filename='js/materialize.min.js') }}"></script>
-
+    <style media="screen">
+    .bt{
+      position: relative;
+      margin-top: 5px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    @media (max-width: 600px){
+     .container{
+       width: 100%;
+     }
+    }
+    @media (min-width: 600px){
+     .container{
+       width: 75%;
+     }
+    }
+    @media (min-width: 900px){
+     .container{
+       width: 700px;
+     }
+    }
+    </style>
 </head>
 
 <body>
     <script type="text/javascript">
-        function validateForm(section, len) {
+        function validateForm(section, len, sec) {
 
             var x = document.getElementById("forma").elements;
-
             for (var i = section - 1; i < len; i++) {
                 if (x[i].value == "") {
                     var emri = document.getElementById("forma").elements[i].placeholder;
@@ -26,10 +48,10 @@
                     return false;
                 }
                 if (x[0].value != "" && x[1].value != "" && x[2].value != "" && x[3].value != "" && x[4].value != "" && x[5].value != "" && x[6].value != "") {
-                    document.getElementById("btt").setAttribute("dest", "#sec2");
+                    document.getElementById("btt").setAttribute("dest", '#sec'+sec);
                 }
                 if (x[7].value != "" && x[8].value != "" && x[9].value != "" && x[10].value != "" && x[11].value != "" && x[12].value != "") {
-                    document.getElementById("btt2").setAttribute("dest", "#sec3");
+                    document.getElementById("btt2").setAttribute("dest", '#sec'+sec);
                 }
             }
 
@@ -69,8 +91,8 @@
                                         <label for="" class="active">1.1 Emri i Ndermarresit(Entiteti)</label>
                                     </div>
                                     <div class="input-field col s12">
-                                        <input placeholder="1.2 Numri i Regjistrimit te Biznesit" id="NrRegjistritBiz" type="text" name="NumriRegjistritBiznesit" class="validate" required>
-                                        <label for="" class="active">1.2 Numri i Regjistrimit te Biznesit</label>
+                                        <input placeholder="1.2 Numri i Regjistrimit te Biznesit" minlength="8" maxlength="8" id="NrRegjistritBiz" type="text" name="NumriRegjistritBiznesit" class="validate" required>
+                                        <label for="" class="active" data-error="Numri eshte gabim!" data-success="Sukses!">1.2 Numri i Regjistrimit te Biznesit</label>
                                     </div>
                                     <div class="input-field col s12">
                                         <input placeholder="1.3 Numri fiskal" id="NrFiskal" type="text" name="NumriFiskal" class="validate" required>
@@ -94,7 +116,7 @@
                                     </div>
 
                                     <div class="col s12">
-                                        <a class="btn" data-click="true" onclick="validateForm(1,7)" id="btt">Vazhdo!</a>
+                                        <a class="btn bt" data-click="true" onclick="validateForm(1,7,2)" id="btt">Vazhdo!</a>
                                     </div>
                                 </div>
                             </li>
@@ -107,25 +129,25 @@
                                     </div>
                                     <div class="input-field col s12">
                                         <input placeholder="2.2 Adresa" id="" type="text" name="Adresa2" class="validate" required>
-                                        <label for="" class="active">2.2 Adresa</label>
+                                        <label for="" class="active" data-error="Numri eshte gabim!" data-success="Sukses!">2.2 Adresa</label>
                                     </div>
                                     <div class="input-field col s12">
-                                        <input placeholder="2.3 Numri i Telefonit" id="" type="text" name="NumriTelefonit2" class="validate" required>
-                                        <label for="" class="active">2.3 Numri i Telefonit</label>
+                                        <input placeholder="2.3 Numri i Telefonit" id="" type="number" name="NumriTelefonit2" class="validate" required>
+                                        <label for="" class="active" data-error="Numri eshte gabim!" data-success="Sukses!">2.3 Numri i Telefonit</label>
                                     </div>
                                     <div class="input-field col s12">
-                                        <input placeholder="2.4 Numri i Faksit" id="" type="text" name="NumriFaksit" class="validate" required>
-                                        <label for="" class="active">2.4 Numri i Faksit</label>
+                                        <input placeholder="2.4 Numri i Faksit" id="" type="number" name="NumriFaksit" class="validate" required>
+                                        <label for="" class="active" data-error="Numri eshte gabim!" data-success="Sukses!">2.4 Numri i Faksit</label>
                                     </div>
                                     <div class="input-field col s12">
                                         <input placeholder="2.5 E-mail adresa" id="email" type="email" class="validate" name="EmailAdresa2 required">
-                                        <label for="email" data-error="E-mail eshte gabim!" data-success="Sukses!" class="active">2.5 E-mail adresa</label>
+                                        <label for="email1" data-error="E-mail eshte gabim!" data-success="Sukses!" class="active">2.5 E-mail adresa</label>
                                     </div>
                                     <div class="input-field col s12">
                                         <input placeholder="2.6 Numri i ID" id="" type="text" name="NumriID" class="validate" required>
                                         <label for="" class="active">2.6 Numri i ID</label>
                                     </div>
-                                    <div class="col s12"> <a class="btn" data-click="true" onclick="validateForm(7,13)" id="btt2">Vazhdo!</a></div>
+                                    <div class="col s12"> <a class="btn bt" data-click="true" onclick="validateForm(7,13,3)" id="btt2">Vazhdo!</a></div>
                                 </div>
                             </li>
                             <li>
@@ -152,7 +174,7 @@
                                                     <input type="checkbox" id="s3t4" />
                                                     <label for="s3t4">Sherbime Tjera(specifikoj)</label>
                                                 </div>
-                          Beautify                  </li>
+                                            </li>
                                             <li class="collection-item">
                                                 <div>
                                                 </div>
@@ -319,7 +341,7 @@
                                             </li>
                                         </ul>
                                     </div>
-                                    <div class="col s12"> <a class="btn" data-click="true" onclick="#sec4">Vazhdo!</a></div>
+                                    <div class="col s12"> <a class="btn bt" data-click="true" onclick="validateForm(13,23,4)">Vazhdo!</a></div>
                                 </div>
                             </li>
                             <li>
@@ -339,7 +361,7 @@
                                         <textarea id="textarea1" class="materialize-textarea" style="height:100%" name="FazaOfrimit" class="validate" required></textarea>
                                         <label for="textarea2">Textarea</label>
                                     </div>
-                                    <div class="col s12"> <a class="btn" data-click="true" onclick="#sec5">Vazhdo!</a></div>
+                                    <div class="col s12"> <a class="btn bt" data-click="true" onclick="#sec5">Vazhdo!</a></div>
                                 </div>
                             </li>
                             <li>
@@ -378,7 +400,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col s12"> <a class="btn" data-click="true" onclick="#sec6">Vazhdo!</a></div>
+                                    <div class="col s12"> <a class="btn bt" data-click="true" onclick="#sec6">Vazhdo!</a></div>
                                 </div>
                             </li>
                             <li>
@@ -395,7 +417,7 @@
                                         <label for="test2">JO</label>
                                         </br>
                                     </div>
-                                    <div class="col s12"> <a class="btn" data-click="true" onclick="#fund">Vazhdo!</a></div>
+                                    <div class="col s12"> <a class="btn bt" data-click="true" onclick="#fund">Vazhdo!</a></div>
                                 </div>
                             </li>
                             <li>
