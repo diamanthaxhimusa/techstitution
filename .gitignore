@@ -2,4 +2,5 @@ venv
 *~
 *.swp
 *.pyc
+.DS_Store
 logs

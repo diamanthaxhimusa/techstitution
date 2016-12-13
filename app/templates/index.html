@@ -1,434 +1,462 @@
 <!DOCTYPE html>
+
 <head>
-  <title>Forma</title>
-  <link type="text/css" rel="stylesheet" href="{{ url_for( 'static', filename='css/materialize.min.css') }}"  media="screen,projection"/>
-  <link rel="stylesheet" href="{{ url_for( 'static', filename='css/style.css') }}"/>
-  <!--Let browser know website is optimized for mobile-->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <!-- jQuery is required by Materialize to function -->
-  <script type="text/javascript" src="{{ url_for( 'static', filename='js/jquery-2.1.1.min.js') }}"></script>
-  <script type="text/javascript" src="{{ url_for( 'static', filename='js/materialize.min.js') }}"></script>
+    <title>Forma</title>
+    <link type="text/css" rel="stylesheet" href="{{ url_for( 'static', filename='css/materialize.min.css') }}" media="screen,projection" />
+    <link rel="stylesheet" href="{{ url_for( 'static', filename='css/style.css') }}" />
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- jQuery is required by Materialize to function -->
+    <script type="text/javascript" src="{{ url_for( 'static', filename='js/jquery-2.1.1.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for( 'static', filename='js/materialize.min.js') }}"></script>
 
 </head>
+
 <body>
+    <script type="text/javascript">
+        function validateForm(section, len) {
 
-  <script type="text/javascript" >
-    $(document).ready(function() {
-      $("#forma").submit(function(e) {
-        alert("!!! Autoriteti do te procedoj me shqyrtimin e Formularit te Njoftimit vetem pas kompletimit te Dosjes dhe do ta njoftoj ndermarresin per vendosjen ne Regjistrin e Njoftimit brenda 5 (pese) diteve te punes nga ta data e kompletimit te Njoftimit");
-      });
-      $('[data-click]').on('click', function (e) {
-        $( $(this).attr('onclick') ).trigger('click');
-      });
-      // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
-      $('.modal').modal();
+            var x = document.getElementById("forma").elements;
 
-      $('#emriNdermarrsit2').on('change', function() {
-        var vlera = $(this).val();
-        if (vlera.length < 2) {
-          alert('keni gabuar.');
-          $('#emriNdermarrsit2').focus();
+            for (var i = section - 1; i < len; i++) {
+                if (x[i].value == "") {
+                    var emri = document.getElementById("forma").elements[i].placeholder;
+                    alert(emri + " duhet te mbushet!");
+                    y = false;
+                    return false;
+                }
+                if (x[0].value != "" && x[1].value != "" && x[2].value != "" && x[3].value != "" && x[4].value != "" && x[5].value != "" && x[6].value != "") {
+                    document.getElementById("btt").setAttribute("dest", "#sec2");
+                }
+                if (x[7].value != "" && x[8].value != "" && x[9].value != "" && x[10].value != "" && x[11].value != "" && x[12].value != "") {
+                    document.getElementById("btt2").setAttribute("dest", "#sec3");
+                }
+            }
+
         }
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('[data-click]').on('click', function(e) {
+                $($(this).attr('dest')).trigger('click');
+            });
+            $("#forma").submit(function(e) {
+                alert(
+                    "!!! Autoriteti do te procedoj me shqyrtimin e Formularit te Njoftimit vetem pas kompletimit te Dosjes dhe do ta njoftoj ndermarresin per vendosjen ne Regjistrin e Njoftimit brenda 5 (pese) diteve te punes nga ta data e kompletimit te Njoftimit"
+                );
+            });
 
-      });
+            // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+            $('.modal').modal();
+        });
+    </script>
 
-    });
-  </script>
-
-  <div class="container">
-    <div class="col s12 m6 l6">
-      <div class="card-panel">
-        <div id="img" class="col s12">
-          <img class="responsive-img" src="{{ url_for('static', filename='art_logo_new1.png') }}"/>
-          <h4 class="center-align">Formular I Njoftimit per Hyrje ne aktivitetin e Komunave Elektronike</h4>
-        </div>
-        <div class="row">
-          <form class="col s12" method="POST" id="forma">
-            <ul class="collapsible" data-collapsible="accordion">
-              <li>
-                <div class="collapsible-header active" id="sec1">I. TE DHENAT PER NDERMARRESIN:</div>
-                  <div class="row collapsible-body">
-                    <div class="input-field col s12">
-                      <input placeholder="text" id="emriNdermarrsit2" type="text" name="emriNdermarrsit">
-                      <label for="" class="active">1.1 Emri i Ndermarresit(Entiteti)</label>
-                    </div>
-                    <div class="input-field col s12">
-                      <input placeholder="text" id="" type="text">
-                      <label for="" class="active">1.2 Numri i Regjistrimit te Biznesit</label>
-                    </div>
-                    <div class="input-field col s12">
-                      <input placeholder="text" id="" type="text">
-                      <label for="" class="active">1.3 Numri fiskal</label>
-                    </div>
-                    <div class="input-field col s12">
-                      <input placeholder="text" id="" type="text">
-                      <label for="" class="active">1.4 Adresa</label>
-                    </div>
-                    <div class="input-field col s12">
-                      <input placeholder="text" id="" type="text">
-                      <label for="" class="active">1.5 Numri i Telefonit</label>
-                    </div>
-                    <div class="input-field col s12">
-                      <input placeholder="text" id="" type="text">
-                      <label for="" class="active">1.6 Numri Fiskal</label>
-                    </div>
-                    <div class="input-field col s12">
-                      <input placeholder="someone@someone.com" id="email" type="email" class="validate">
-                      <label for="email" data-error="wrong" data-success="right" class="active">1.7 E-mail adresa</label>
-                    </div>
-
-                    <div class="col s12"> <a class="btn" data-click="true" onclick="#sec2" onsubmit="return validateForm()">Vazhdo!</a></div>
-                  </div>
-              </li>
-              <li>
-                <div class="collapsible-header sec2" id="sec2">II.TE DHENAT PER ZERTARIN LIGJERISHT TE PERGJITHSHEM:</div>
-                    <div class="collapsible-body">
-                      <div class="input-field col s12">
-                        <input placeholder="text" id="" type="text">
-                        <label for="" class="active">2.1 Emri i Zyrtarit</label>
-                      </div>
-                      <div class="input-field col s12">
-                        <input placeholder="text" id="" type="text">
-                        <label for="" class="active">2.2 Adresa</label>
-                      </div>
-                      <div class="input-field col s12">
-                        <input placeholder="text" id="" type="text">
-                        <label for="" class="active">2.3 Numri i Telefonit</label>
-                      </div>
-                      <div class="input-field col s12">
-                        <input placeholder="text" id="" type="text">
-                        <label for="" class="active">2.4 Numri i Faksit</label>
-                      </div>
-                      <div class="input-field col s12">
-                        <input placeholder="someone@someone.com" id="email" type="email" class="validate">
-                        <label for="email" data-error="wrong" data-success="right" class="active">2.5 E-mail adresa</label>
-                      </div>
-                      <div class="input-field col s12">
-                        <input placeholder="text" id="" type="text">
-                        <label for="" class="active">2.6 Numri i ID</label>
-                      </div>
-                      <div class="col s12"> <a class="btn" data-click="true" onclick="#sec3">Vazhdo!</a></div>
-                    </div>
-              </li>
-              <li>
-                <div class="collapsible-header" id="sec3">III.AKTIVITETET TE CILAT NJOFTOHEN/CREGJISTROHEN:</div>
-                  <div class="collapsible-body">
-                    <div class="input-field col s12">
-                      <ul class="collection with-header">
-                        <li class="collection-header"><h5>Ofrimi i Rrjetit publik Fix</h5></li>
-                          <li class="collection-item">
-                            <div>
-                              <input type="checkbox" id="s1t1" />
-                              <label for="s1t1">Lokal</label>
-                            </div>
-                          </li>
-                          <li class="collection-item">
-                            <div>
-                              <input type="checkbox" id="s1t2" />
-                              <label for="s1t2">Nacional</label>
-                            </div>
-                          </li>
-                          <li class="collection-item">
-                            <div>
-                              <input type="checkbox" id="s3t4" />
-                              <label for="s3t4">Sherbime Tjera(specifikoj)</label>
-                            </div>
-                          </li>
-                          <li class="collection-item">
-                            <div>
-                            </div>
-                          </li>
-                      </ul>
-                    </div>
-                    <div class="input-field col s12">
-                      <ul class="collection with-header">
-                        <li class="collection-header"><h5>Ofrimi i sherbime publike fikse</h5></li>
-                          <li class="collection-item">
-                            <div>
-                              <input type="checkbox" id="s2t1" />
-                              <label for="s2t1">Sherbime telefonike lokale/nacionale</label>
-                            </div>
-                          </li>
-                          <li class="collection-item">
-                            <div>
-                              <input type="checkbox" id="s2t2" />
-                              <label for="s2t2">Sherbime telefonike nderkombetare</label>
-                            </div>
-                          </li>
-                          <li class="collection-item">
-                            <div>
-                              <input type="checkbox" id="s2t3" />
-                              <label for="s2t3">Telefona publik me pagese</label>
-                            </div>
-                          </li>
-                          <li class="collection-item">
-                            <div>
-                              <input type="checkbox" id="s2t4" />
-                              <label for="s2t4">Sherbime Tjera(specifikoj)</label>
-                            </div>
-                          </li>
-                          <li class="collection-item">
-                            <div>
-                            </div>
-                          </li>
-                      </ul>
-                    </div>
-                    <div class="input-field col s12">
-                      <ul class="collection with-header">
-                        <li class="collection-header"><h5>3.Ofrimi i Rrjetit publik mobil</h5></li>
-                          <li class="collection-item">
-                            <div>
-                              <input type="checkbox" id="s3t1" />
-                              <label for="s3t1">lokal</label>
-                            </div>
-                          </li>
-                          <li class="collection-item">
-                            <div>
-                              <input type="checkbox" id="s3t2" />
-                              <label for="s3t2">nacional</label>
-                            </div>
-                          </li>
-                          <li class="collection-item">
-                            <div>
-                            </div>
-                          </li>
-                      </ul>
-                    </div>
-                    <div class="input-field col s12">
-                      <ul class="collection with-header">
-                        <li class="collection-header"><h5>4.Ofrimi i sherbimeve publike mobile</h5></li>
-                          <li class="collection-item">
-                            <div>
-                              <input type="checkbox" id="s4t1" />
-                              <label for="s4t1">Sherbime telefonike te zerit</label>
-                            </div>
-                          </li>
-                          <li class="collection-item">
-                            <div>
-                              <input type="checkbox" id="s4t2" />
-                              <label for="s4t2">Transmetim te dhenash</label>
-                            </div>
-                          </li>
-                          <li class="collection-item">
-                            <div>
-                            </div>
-                          </li>
-                      </ul>
-                    </div>
-                    <div class="input-field col s12">
-                      <ul class="collection with-header">
-                        <li class="collection-header"><h5>5.Ofrimi i sherbimeve te linjave me qira</h5></li>
-                          <li class="collection-item">
-                            <div>
-                              <input type="checkbox" id="s5t1" />
-                              <label for="s5t1">Fiber optik pa-ndriquar</label>
-                            </div>
-                          </li>
-                          <li class="collection-item">
-                            <div>
-                              <input type="checkbox" id="s5t2" />
-                              <label for="s5t2">Linja tjera me qira</label>
-                            </div>
-                          </li>
-                      </ul>
-                    </div>
-                    <div class="input-field col s12">
-                      <ul class="collection with-header">
-                        <li class="collection-header"><h5>6.Ofrimi i rrjetave publike me transmetim satelitor</h5></li>
-                          <li class="collection-item">
-                            <div>
-                              <input type="checkbox" id="s6t1" />
-                              <label for="s6t1">Ofrimi i rrjetave publike satelitore</label>
-                            </div>
-                          </li>
-                          <li class="collection-item">
-                            <div>
-                            </div>
-                          </li>
-                      </ul>
-                    </div>
-                    <div class="input-field col s12">
-                      <ul class="collection with-header">
-                        <li class="collection-header"><h5>7.Ofrimi i sherbimeve publike satelitore</h5></li>
-                          <li class="collection-item">
-                            <div>
-                              <input type="checkbox" id="s7t1" />
-                              <label for="s7t1">Ofrimi i sherbimeve publike satelitore</label>
-                            </div>
-                          </li>
-                          <li class="collection-item">
-                            <div>
-                            </div>
-                          </li>
-                      </ul>
-                    </div>
-                    <div class="input-field col s12">
-                      <ul class="collection with-header">
-                        <li class="collection-header"><h5>8.Ofrimi i sherbimeve te transmetimit te te dhenace(internetit)</h5></li>
-                          <li class="collection-item">
-                            <div>
-                              <input type="checkbox" id="s8t1" />
-                              <label for="s8t1">Ofrimi i sherbimeve publike te transmetimit te te dhenave(internetit)</label>
-                            </div>
-                          </li>
-                          <li class="collection-item">
-                            <div>
-                            </div>
-                          </li>
-                      </ul>
-                    </div>
-                    <div class="input-field col s12">
-                      <ul class="collection with-header">
-                        <li class="collection-header"><h5>9.Ofrimi i sherbimeve me vlere te shtuar</h5></li>
-                          <li class="collection-item">
-                            <div>
-                              <input type="checkbox" id="s9t1" />
-                              <label for="s9t1">Ofrimi i sherbimeve me vlere te shtuar</label>
-                            </div>
-                          </li>
-                          <li class="collection-item">
-                            <div>
-                            </div>
-                          </li>
-                      </ul>
-                    </div>
-                    <div class="col s12"> <a class="btn" data-click="true" onclick="#sec4">Vazhdo!</a></div>
+    <div class="container">
+        <div class="col s12 m6 l6">
+            <div class="card-panel">
+                <div id="img" class="col s12">
+                    <img class="responsive-img" src="{{ url_for('static', filename='art_logo_new1.png') }}" />
+                    <h4 class="center-align">Formular I Njoftimit per Hyrje ne aktivitetin e Komunave Elektronike</h4>
                 </div>
-              </li>
-              <li>
-                <div  class="collapsible-header" id="sec4">IV. PERSHKRIMI I AKTIVITETIT DHE FAZA E OFRIMIT:</div>
-                  <div class="collapsible-body">
-                    <div class="col m6 s12" style="border-right:1px solid black">
-                      <h6>Pershkrimi i rrjetit dhe/ose sherbimit qe do te ofrohet:</h6>
-                    </div>
-                    <div class="input-field col m6 s12">
-                      <textarea id="textarea1" class="materialize-textarea" style="height:10em"></textarea>
-                      <label for="textarea1">Textarea</label>
-                    </div>
-                    <div class="col m6 s12" style="border-right:1px solid black">
-                      <h6>Faza e Ofrimit:</h6>
-                    </div>
-                    <div class="input-field col m6 s12">
-                      <textarea id="textarea1" class="materialize-textarea" style="height:100%"></textarea>
-                      <label for="textarea2">Textarea</label>
-                    </div>
-                    <div class="col s12"> <a class="btn" data-click="true" onclick="#sec5">Vazhdo!</a></div>
-                  </div>
-              </li>
-              <li>
-                <div class="collapsible-header" id="sec5">V. DOKUMENTET E BASHKANGJITURA:</div>
-                  <div class="collapsible-body">
-                    <div class="col m12 s12">
-                      <div class="file-field input-field">
-                        <div class="btn">
-                          <span>File</span>
-                          <input type="file">
-                        </div>
-                        <div class="file-path-wrapper">
-                          <input class="file-path validate" type="text">
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col m12 s12">
-                      <div class="file-field input-field">
-                        <div class="btn">
-                          <span>File</span>
-                          <input type="file">
-                        </div>
-                        <div class="file-path-wrapper">
-                          <input class="file-path validate" type="text">
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col m12 s12">
-                      <div class="file-field input-field">
-                        <div class="btn">
-                          <span>File</span>
-                          <input type="file">
-                        </div>
-                        <div class="file-path-wrapper">
-                          <input class="file-path validate" type="text">
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col s12"> <a class="btn" data-click="true" onclick="#sec6">Vazhdo!</a></div>
-                  </div>
-              </li>
-              <li>
-                <div class="collapsible-header" id="sec6">VI. KONFIRMIMI I NJOFTIMIT:</div>
-                  <div class="collapsible-body">
-                    <div class="col m12 l12 s12">
-                      <h6>Ndermarrja kerkon qe t'i leshohet certifikata e konfirmimit te njoftimit per ofrimin e rrjeteve dhe/ose sherbimeve publike te komunikimeve elektronike te njoftuara permes ketij formulari:</h6>
-                      <br>
-                        <input name="group1" type="radio" id="test1" />
-                        <label for="test1">PO</label>
-                      </br>
-                      <br>
-                        <input name="group1" type="radio" id="test2" />
-                        <label for="test2">JO</label>
-                      </br>
-                    </div>
-                    <div class="col s12"> <a class="btn" data-click="true" onclick="#fund">Vazhdo!</a></div>
-                  </div>
-              </li>
-              <li>
-                <div class="collapsible-header" id="fund">Perfundim</div>
-                <div class="collapsible-body">
-                  <div class="input-field col s12">
-                  </div>
-                  <a class="modal-trigger waves-effect waves-light btn" href="#modal1">Perfundo</a>
+                <div class="row">
+                    <form class="col s12" method="POST" id="forma">
+                        <ul class="collapsible" data-collapsible="accordion">
+                            <li>
+                                <div class="collapsible-header active" id="sec1">I. TE DHENAT PER NDERMARRESIN:</div>
+                                <div class="row collapsible-body">
+                                    <div class="input-field col s12">
+                                        <input placeholder="1.1 Emri i Ndermarresit(Entiteti) " id="EmriNdermarrsit" type="text" name="EmriNdermarrsit" class="validate" required>
+                                        <label for="" class="active">1.1 Emri i Ndermarresit(Entiteti)</label>
+                                    </div>
+                                    <div class="input-field col s12">
+                                        <input placeholder="1.2 Numri i Regjistrimit te Biznesit" id="NrRegjistritBiz" type="text" name="NumriRegjistritBiznesit" class="validate" required>
+                                        <label for="" class="active">1.2 Numri i Regjistrimit te Biznesit</label>
+                                    </div>
+                                    <div class="input-field col s12">
+                                        <input placeholder="1.3 Numri fiskal" id="NrFiskal" type="text" name="NumriFiskal" class="validate" required>
+                                        <label for="" class="active">1.3 Numri fiskal</label>
+                                    </div>
+                                    <div class="input-field col s12">
+                                        <input placeholder="1.4 Adresa" id="Adresa" type="text" name="Adresa" class="validate" required>
+                                        <label for="" class="active">1.4 Adresa</label>
+                                    </div>
+                                    <div class="input-field col s12">
+                                        <input placeholder="1.5 Numri i Telefonit" id="NumriTelefonit" type="text" name="NumriTelefonit" class="validate" required>
+                                        <label for="" class="active">1.5 Numri i Telefonit</label>
+                                    </div>
+                                    <div class="input-field col s12">
+                                        <input placeholder="1.6 Numri Fiskal" id="nrfiskal" type="text" name="NumriFiskal" class="validate" required>
+                                        <label for="" class="active">1.6 Numri Fiskal</label>
+                                    </div>
+                                    <div class="input-field col s12">
+                                        <input placeholder="1.7 E-mail adresa" id="email" type="email" class="validate" name="EmailAdresa" class="validate" required>
+                                        <label for="email" data-error="E-mail eshte gabim!" data-success="Sukses!" class="active">1.7 E-mail adresa</label>
+                                    </div>
 
-                  <!-- Modal Structure -->
-                  <div id="modal1" class="modal modal-fixed-footer">
-                    <div class="modal-content">
-                      <ul>
-                        <li>
-                          <div>
-                            <input type="checkbox" id="pch1" />
-                            <label for="pch1">Unë nëpërmjet këtij dokumenti deklaroj se do të ushtroj aktivitet në fushën e komunikimeve elektronike të shënuara më sipër dhe aplikoj për regjistrim në regjistrin e ofrueseve të rrjeteve dhe shërbimeve të komunikimeve elektronike të Autoritetit (ARKEP).
-                            </label>
-                          </div>
-                        </li>
-                        <li>
-                          <div>
-                            <input type="checkbox" id="pch2" />
-                            <label for="pch2">Unë nëpërmjet këtij dokumenti deklaroj se kam mbyllur aktivitetet e komunikimeve elektronike të shënuara më sipër.</label>
-                          </div>
-                        </li>
-                        <li>
-                          <div>
-                            <input type="checkbox" id="pch3" />
-                            <label for="pch3">Unë nëpërmjet këtij dokumenti deklaroj se kam mbyllur çdo aktivitet të komunikimeve elektronike nën regjimin e Autorizimit të përgjithshëm.</label>
-                          </div>
-                        </li>
-                        <li>
-                          <div>
-                            <input type="checkbox" id="pch4" />
-                            <label for="pch4">Unë nëpërmjet këtij dokumenti deklaroj se të dhënat e mia kanë pësuar ndryshime, sikurse përshkruhen në formular.
-                            </label>
-                          </div>
-                        </li>
-                        <li>
-                          <div>
-                            <input type="checkbox" id="pch5" />
-                            <label for="pch5">Unë nëpërmjet këtij dokumenti deklaroj se kam ndryshuar formën ligjore të ndërmarrjes sime siç përshkruhet në formular. Emri i vjetër është si më poshtë;
-                            </label>
-                          </div>
-                        </li>
-                      </ul>
-                    </div>
-                    <div class="modal-footer">
-                      <button class="btn cyan waves-effect waves-light center" type="submit" id="buttoni" name="action" method="POST">Submit
-                      </button>
-                    </div>
-                  </div>
+                                    <div class="col s12">
+                                        <a class="btn" data-click="true" onclick="validateForm(1,7)" id="btt">Vazhdo!</a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="collapsible-header sec2" id="sec2">II.TE DHENAT PER ZERTARIN LIGJERISHT TE PERGJITHSHEM:</div>
+                                <div class="collapsible-body">
+                                    <div class="input-field col s12">
+                                        <input placeholder="2.1 Emri i Zyrtarit" id="" type="text" name="EmriZyrtarit" class="validate" required>
+                                        <label for="" class="active">2.1 Emri i Zyrtarit</label>
+                                    </div>
+                                    <div class="input-field col s12">
+                                        <input placeholder="2.2 Adresa" id="" type="text" name="Adresa2" class="validate" required>
+                                        <label for="" class="active">2.2 Adresa</label>
+                                    </div>
+                                    <div class="input-field col s12">
+                                        <input placeholder="2.3 Numri i Telefonit" id="" type="text" name="NumriTelefonit2" class="validate" required>
+                                        <label for="" class="active">2.3 Numri i Telefonit</label>
+                                    </div>
+                                    <div class="input-field col s12">
+                                        <input placeholder="2.4 Numri i Faksit" id="" type="text" name="NumriFaksit" class="validate" required>
+                                        <label for="" class="active">2.4 Numri i Faksit</label>
+                                    </div>
+                                    <div class="input-field col s12">
+                                        <input placeholder="2.5 E-mail adresa" id="email" type="email" class="validate" name="EmailAdresa2 required">
+                                        <label for="email" data-error="E-mail eshte gabim!" data-success="Sukses!" class="active">2.5 E-mail adresa</label>
+                                    </div>
+                                    <div class="input-field col s12">
+                                        <input placeholder="2.6 Numri i ID" id="" type="text" name="NumriID" class="validate" required>
+                                        <label for="" class="active">2.6 Numri i ID</label>
+                                    </div>
+                                    <div class="col s12"> <a class="btn" data-click="true" onclick="validateForm(7,13)" id="btt2">Vazhdo!</a></div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="collapsible-header" id="sec3">III.AKTIVITETET TE CILAT NJOFTOHEN/CREGJISTROHEN:</div>
+                                <div class="collapsible-body">
+                                    <div class="input-field col s12">
+                                        <ul class="collection with-header">
+                                            <li class="collection-header">
+                                                <h5>Ofrimi i Rrjetit publik Fix</h5></li>
+                                            <li class="collection-item">
+                                                <div>
+                                                    <input type="checkbox" id="s1t1" />
+                                                    <label for="s1t1">Lokal</label>
+                                                </div>
+                                            </li>
+                                            <li class="collection-item">
+                                                <div>
+                                                    <input type="checkbox" id="s1t2" />
+                                                    <label for="s1t2">Nacional</label>
+                                                </div>
+                                            </li>
+                                            <li class="collection-item">
+                                                <div>
+                                                    <input type="checkbox" id="s3t4" />
+                                                    <label for="s3t4">Sherbime Tjera(specifikoj)</label>
+                                                </div>
+                          Beautify                  </li>
+                                            <li class="collection-item">
+                                                <div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="input-field col s12">
+                                        <ul class="collection with-header">
+                                            <li class="collection-header">
+                                                <h5>Ofrimi i sherbime publike fikse</h5></li>
+                                            <li class="collection-item">
+                                                <div>
+                                                    <input type="checkbox" id="s2t1" />
+                                                    <label for="s2t1">Sherbime telefonike lokale/nacionale</label>
+                                                </div>
+                                            </li>
+                                            <li class="collection-item">
+                                                <div>
+                                                    <input type="checkbox" id="s2t2" />
+                                                    <label for="s2t2">Sherbime telefonike nderkombetare</label>
+                                                </div>
+                                            </li>
+                                            <li class="collection-item">
+                                                <div>
+                                                    <input type="checkbox" id="s2t3" />
+                                                    <label for="s2t3">Telefona publik me pagese</label>
+                                                </div>
+                                            </li>
+                                            <li class="collection-item">
+                                                <div>
+                                                    <input type="checkbox" id="s2t4" />
+                                                    <label for="s2t4">Sherbime Tjera(specifikoj)</label>
+                                                </div>
+                                            </li>
+                                            <li class="collection-item">
+                                                <div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="input-field col s12">
+                                        <ul class="collection with-header">
+                                            <li class="collection-header">
+                                                <h5>3.Ofrimi i Rrjetit publik mobil</h5></li>
+                                            <li class="collection-item">
+                                                <div>
+                                                    <input type="checkbox" id="s3t1" />
+                                                    <label for="s3t1">lokal</label>
+                                                </div>
+                                            </li>
+                                            <li class="collection-item">
+                                                <div>
+                                                    <input type="checkbox" id="s3t2" />
+                                                    <label for="s3t2">nacional</label>
+                                                </div>
+                                            </li>
+                                            <li class="collection-item">
+                                                <div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="input-field col s12">
+                                        <ul class="collection with-header">
+                                            <li class="collection-header">
+                                                <h5>4.Ofrimi i sherbimeve publike mobile</h5></li>
+                                            <li class="collection-item">
+                                                <div>
+                                                    <input type="checkbox" id="s4t1" />
+                                                    <label for="s4t1">Sherbime telefonike te zerit</label>
+                                                </div>
+                                            </li>
+                                            <li class="collection-item">
+                                                <div>
+                                                    <input type="checkbox" id="s4t2" />
+                                                    <label for="s4t2">Transmetim te dhenash</label>
+                                                </div>
+                                            </li>
+                                            <li class="collection-item">
+                                                <div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="input-field col s12">
+                                        <ul class="collection with-header">
+                                            <li class="collection-header">
+                                                <h5>5.Ofrimi i sherbimeve te linjave me qira</h5></li>
+                                            <li class="collection-item">
+                                                <div>
+                                                    <input type="checkbox" id="s5t1" />
+                                                    <label for="s5t1">Fiber optik pa-ndriquar</label>
+                                                </div>
+                                            </li>
+                                            <li class="collection-item">
+                                                <div>
+                                                    <input type="checkbox" id="s5t2" />
+                                                    <label for="s5t2">Linja tjera me qira</label>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="input-field col s12">
+                                        <ul class="collection with-header">
+                                            <li class="collection-header">
+                                                <h5>6.Ofrimi i rrjetave publike me transmetim satelitor</h5></li>
+                                            <li class="collection-item">
+                                                <div>
+                                                    <input type="checkbox" id="s6t1" />
+                                                    <label for="s6t1">Ofrimi i rrjetave publike satelitore</label>
+                                                </div>
+                                            </li>
+                                            <li class="collection-item">
+                                                <div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="input-field col s12">
+                                        <ul class="collection with-header">
+                                            <li class="collection-header">
+                                                <h5>7.Ofrimi i sherbimeve publike satelitore</h5></li>
+                                            <li class="collection-item">
+                                                <div>
+                                                    <input type="checkbox" id="s7t1" />
+                                                    <label for="s7t1">Ofrimi i sherbimeve publike satelitore</label>
+                                                </div>
+                                            </li>
+                                            <li class="collection-item">
+                                                <div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="input-field col s12">
+                                        <ul class="collection with-header">
+                                            <li class="collection-header">
+                                                <h5>8.Ofrimi i sherbimeve te transmetimit te te dhenace(internetit)</h5></li>
+                                            <li class="collection-item">
+                                                <div>
+                                                    <input type="checkbox" id="s8t1" />
+                                                    <label for="s8t1">Ofrimi i sherbimeve publike te transmetimit te te dhenave(internetit)</label>
+                                                </div>
+                                            </li>
+                                            <li class="collection-item">
+                                                <div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="input-field col s12">
+                                        <ul class="collection with-header">
+                                            <li class="collection-header">
+                                                <h5>9.Ofrimi i sherbimeve me vlere te shtuar</h5></li>
+                                            <li class="collection-item">
+                                                <div>
+                                                    <input type="checkbox" id="s9t1" />
+                                                    <label for="s9t1">Ofrimi i sherbimeve me vlere te shtuar</label>
+                                                </div>
+                                            </li>
+                                            <li class="collection-item">
+                                                <div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="col s12"> <a class="btn" data-click="true" onclick="#sec4">Vazhdo!</a></div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="collapsible-header" id="sec4">IV. PERSHKRIMI I AKTIVITETIT DHE FAZA E OFRIMIT:</div>
+                                <div class="collapsible-body">
+                                    <div class="col m6 s12" style="border-right:1px solid black">
+                                        <h6>Pershkrimi i rrjetit dhe/ose sherbimit qe do te ofrohet:</h6>
+                                    </div>
+                                    <div class="input-field col m6 s12">
+                                        <textarea id="textarea1" class="materialize-textarea" style="height:10em" name="PershkrimiRrjetitOfrohet" class="validate" required></textarea>
+                                        <label for="textarea1">Textarea</label>
+                                    </div>
+                                    <div class="col m6 s12" style="border-right:1px solid black">
+                                        <h6>Faza e Ofrimit:</h6>
+                                    </div>
+                                    <div class="input-field col m6 s12">
+                                        <textarea id="textarea1" class="materialize-textarea" style="height:100%" name="FazaOfrimit" class="validate" required></textarea>
+                                        <label for="textarea2">Textarea</label>
+                                    </div>
+                                    <div class="col s12"> <a class="btn" data-click="true" onclick="#sec5">Vazhdo!</a></div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="collapsible-header" id="sec5">V. DOKUMENTET E BASHKANGJITURA:</div>
+                                <div class="collapsible-body">
+                                    <div class="col m12 s12">
+                                        <div class="file-field input-field">
+                                            <div class="btn">
+                                                <span>File</span>
+                                                <input type="file" class="validate" required>
+                                            </div>
+                                            <div class="file-path-wrapper">
+                                                <input class="file-path validate" type="text">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col m12 s12">
+                                        <div class="file-field input-field">
+                                            <div class="btn">
+                                                <span>File</span>
+                                                <input type="file" class="validate" required>
+                                            </div>
+                                            <div class="file-path-wrapper">
+                                                <input class="file-path validate" type="text">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col m12 s12">
+                                        <div class="file-field input-field">
+                                            <div class="btn">
+                                                <span>File</span>
+                                                <input type="file" class="validate" required>
+                                            </div>
+                                            <div class="file-path-wrapper">
+                                                <input class="file-path validate" type="text">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col s12"> <a class="btn" data-click="true" onclick="#sec6">Vazhdo!</a></div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="collapsible-header" id="sec6">VI. KONFIRMIMI I NJOFTIMIT:</div>
+                                <div class="collapsible-body">
+                                    <div class="col m12 l12 s12">
+                                        <h6>Ndermarrja kerkon qe t'i leshohet certifikata e konfirmimit te njoftimit per ofrimin e rrjeteve dhe/ose sherbimeve publike te komunikimeve elektronike te njoftuara permes ketij formulari:</h6>
+                                        <br>
+                                        <input name="group1" type="radio" id="test1" />
+                                        <label for="test1">PO</label>
+                                        </br>
+                                        <br>
+                                        <input name="group1" type="radio" id="test2" />
+                                        <label for="test2">JO</label>
+                                        </br>
+                                    </div>
+                                    <div class="col s12"> <a class="btn" data-click="true" onclick="#fund">Vazhdo!</a></div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="collapsible-header" id="fund">Perfundim</div>
+                                <div class="collapsible-body">
+                                    <div class="input-field col s12">
+                                    </div>
+                                    <a class="modal-trigger waves-effect waves-light btn" href="#modal1">Perfundo</a>
+
+                                    <!-- Modal Structure -->
+                                    <div id="modal1" class="modal modal-fixed-footer">
+                                        <div class="modal-content">
+                                            <ul>
+                                                <li>
+                                                    <div>
+                                                        <input type="checkbox" id="pch1" />
+                                                        <label for="pch1">Unë nëpërmjet këtij dokumenti deklaroj se do të ushtroj aktivitet në fushën e komunikimeve elektronike të shënuara më sipër dhe aplikoj për regjistrim në regjistrin e ofrueseve të rrjeteve dhe shërbimeve të komunikimeve elektronike të Autoritetit (ARKEP).
+                                                        </label>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div>
+                                                        <input type="checkbox" id="pch2" />
+                                                        <label for="pch2">Unë nëpërmjet këtij dokumenti deklaroj se kam mbyllur aktivitetet e komunikimeve elektronike të shënuara më sipër.</label>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div>
+                                                        <input type="checkbox" id="pch3" />
+                                                        <label for="pch3">Unë nëpërmjet këtij dokumenti deklaroj se kam mbyllur çdo aktivitet të komunikimeve elektronike nën regjimin e Autorizimit të përgjithshëm.</label>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div>
+                                                        <input type="checkbox" id="pch4" />
+                                                        <label for="pch4">Unë nëpërmjet këtij dokumenti deklaroj se të dhënat e mia kanë pësuar ndryshime, sikurse përshkruhen në formular.
+                                                        </label>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div>
+                                                        <input type="checkbox" id="pch5" />
+                                                        <label for="pch5">Unë nëpërmjet këtij dokumenti deklaroj se kam ndryshuar formën ligjore të ndërmarrjes sime siç përshkruhet në formular. Emri i vjetër është si më poshtë;
+                                                        </label>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button class="btn cyan waves-effect waves-light center" type="submit" id="buttoni" name="action" method="POST">Submit
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </form>
                 </div>
-              </li>
-            </ul>
-          </form>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 </body>
+
 </html>
