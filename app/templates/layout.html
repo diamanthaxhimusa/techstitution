@@ -1,11 +1,87 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Techstitiution</title>
+	<title>Techstitution</title>
+	<link type="text/css" rel="stylesheet" href="{{ url_for( 'static', filename='css/materialize.min.css') }}" media="screen,projection" />
+	<link rel="stylesheet" href="{{ url_for( 'static', filename='css/style2.css') }}" />
+	<link rel="stylesheet" href="{{url_for( 'static', filename='fonts1.css') }}"
+	<!--Let browser know website is optimized for mobile-->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<!-- jQuery is required by Materialize to function -->
+	<script type="text/javascript" src="{{ url_for( 'static', filename='js/jquery-2.1.1.min.js') }}"></script>
+	<script type="text/javascript" src="{{ url_for( 'static', filename='js/materialize.min.js') }}"></script>
+	<script type="text/javascript" src="{{ url_for( 'static', filename='js/validation.js') }}"></script>
+	<style media="screen">
+
+	body,header,h5{
+		color: #216E67;
+	}
+	span{
+		color: #216E67;
+	}
+
+	.bt{
+		position: relative;
+		margin-top: 10px;
+		top: 50%;
+		left: 40%;
+		/*transform: translate(-50%, -50%);*/
+	}
+	table tr{
+		border-bottom: 1px solid #eaeaea;
+	}
+	.une{
+		background-color: #fafafab3;
+		margin-top: 15px!important;
+		border-top: 1px solid #eaeaea;
+		border-bottom: 1px solid #eaeaea;
+	}
+	.modal {
+		background-color: #fff!important;
+	}
+	table td,
+	table th {
+		padding: 5px;
+		width: 10%;
+	}
+
+	table th.num-data,
+	table td.num-data {
+		padding-left: 52px;
+		width: 1%!important;
+	}
+
+	/*table .table-row:hover {
+		background-color: #f5f5f5;
+	}*/
+	.specify-input {
+		display: none;
+	}
+
+	@media (max-width: 600px){
+	 .container{
+		 width: 100%;
+	 }
+	}
+	@media (min-width: 600px){
+	 .container{
+		 width: 75%;
+	 }
+	}
+	@media (min-width: 900px){
+	 .container{
+		 width: 55%;
+	 }
+	}
+	</style>
+
+
 </head>
 <body>
+
 {% block content %}
 
 {% endblock %}
+
 </body>
 </html>
