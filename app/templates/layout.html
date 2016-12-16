@@ -12,14 +12,38 @@
 	<script type="text/javascript" src="{{ url_for( 'static', filename='js/materialize.min.js') }}"></script>
 	<script type="text/javascript" src="{{ url_for( 'static', filename='js/validation.js') }}"></script>
 	<style media="screen">
-
 	body,header,h5{
 		color: #216E67;
 	}
 	span{
 		color: #216E67;
 	}
-
+	.autoExpand{
+  display:block;
+  box-sizing: padding-box;
+  overflow:hidden;
+  resize:none;
+  padding:10px;
+  width:250px;
+  font-size:14px;
+  margin:50px auto;
+  border-radius:6px;
+  box-shadow:2px 2px 8px rgba(0,0,0,.3);
+  border:0;
+}
+#ulista li{
+	list-style-type: circle !important;
+}
+	.input-field label.active{
+		font-size: 0.88rem;
+	}
+	.lbl{
+		color: #216E67;
+		top: 0.8rem;
+		font-size: 1rem;
+		cursor: text;
+		transition: .2s ease-out;
+	}
 	.bt{
 		position: relative;
 		margin-top: 10px;
