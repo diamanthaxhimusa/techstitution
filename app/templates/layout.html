@@ -3,7 +3,7 @@
 <head>
 	<title>Techstitution</title>
 	<link type="text/css" rel="stylesheet" href="{{ url_for( 'static', filename='css/materialize.min.css') }}" media="screen,projection" />
-	<link rel="stylesheet" href="{{ url_for( 'static', filename='css/style2.css') }}" />
+	<link rel="stylesheet" href="{{ url_for( 'static', filename='css/stylesheet.css') }}" />
 	<link rel="stylesheet" href="{{url_for( 'static', filename='fonts1.css') }}"
 	<!--Let browser know website is optimized for mobile-->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -11,101 +11,32 @@
 	<script type="text/javascript" src="{{ url_for( 'static', filename='js/jquery-2.1.1.min.js') }}"></script>
 	<script type="text/javascript" src="{{ url_for( 'static', filename='js/materialize.min.js') }}"></script>
 	<script type="text/javascript" src="{{ url_for( 'static', filename='js/validation.js') }}"></script>
-	<style media="screen">
-	body,header,h5{
-		color: #216E67;
-	}
-	span{
-		color: #216E67;
-	}
-	.autoExpand{
-  display:block;
-  box-sizing: padding-box;
-  overflow:hidden;
-  resize:none;
-  padding:10px;
-  width:250px;
-  font-size:14px;
-  margin:50px auto;
-  border-radius:6px;
-  box-shadow:2px 2px 8px rgba(0,0,0,.3);
-  border:0;
-}
-#ulista li{
-	list-style-type: circle !important;
-}
-	.input-field label.active{
-		font-size: 0.88rem;
-	}
-	.lbl{
-		color: #216E67;
-		top: 0.8rem;
-		font-size: 1rem;
-		cursor: text;
-		transition: .2s ease-out;
-	}
-	.bt{
-		position: relative;
-		margin-top: 10px;
-		top: 50%;
-		left: 40%;
-		/*transform: translate(-50%, -50%);*/
-	}
-	table tr{
-		border-bottom: 1px solid #eaeaea;
-	}
-	.une{
-		background-color: #fafafab3;
-		margin-top: 15px!important;
-		border-top: 1px solid #eaeaea;
-		border-bottom: 1px solid #eaeaea;
-	}
-	.modal {
-		background-color: #fff!important;
-	}
-	table td,
-	table th {
-		padding: 5px;
-		width: 10%;
-	}
-
-	table th.num-data,
-	table td.num-data {
-		padding-left: 52px;
-		width: 1%!important;
-	}
-
-	/*table .table-row:hover {
-		background-color: #f5f5f5;
-	}*/
-	.specify-input {
-		display: none;
-	}
-
-	@media (max-width: 600px){
-	 .container{
-		 width: 100%;
-	 }
-	}
-	@media (min-width: 600px){
-	 .container{
-		 width: 75%;
-	 }
-	}
-	@media (min-width: 900px){
-	 .container{
-		 width: 55%;
-	 }
-	}
-	</style>
-
-
 </head>
 <body>
 
-{% block content %}
+	<div class="container">
+		<div class="col s12 m6 l6">
+			<div class="card-panel">
+					<div id="img" class="col s12">
+							<img class="responsive-img" src="{{ url_for('static', filename='logo3.png') }}" />
+							{% block header %}
 
-{% endblock %}
+							{% endblock %}
+					</div>
+					<div class="row">
+						<div class="col s12">
+							{% block content %}
 
+							{% endblock %}
+						</div>
+					</div>
+				<footer style="text-align:center;font-size:12px">
+					Adresa: Qyteza Pejton, Rr. Mujo Ulqinaku nr. 7, 10 000 Prishtinë, Republika e Kosovës
+					<br>Tel: + 381 (38) 212-345; Fax: + 381 (38) 212 399;
+					<br>E-mail: <a href="mailto:info@arkep-rks.org">info@arkep-rks.org</a>; web-site: <a href="http://www.arkep-rks.org/">www.arkep-rks.org</a>
+				</footer>
+			</div>
+		</div>
+	</div>
 </body>
 </html>

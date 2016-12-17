@@ -1,0 +1,41 @@
+{% extends 'layout.html' %}
+{% block header %}
+  <h4 class="center-align" style="margin-bottom:30px">Ndermarresit</h4>
+{% endblock %}
+{% block content%}
+<div class="card-panel">
+  <table class="highlight bordered responsive-table">
+  <thead>
+    <tr>
+      <th>Emri i Ndermarresit</th>
+      <th>Adresa</th>
+      <th>Numri i Telefonit</th>
+      <th>Email Adresa</th>
+      <th>Opsionet</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for record in myCursor %}
+  <tr class="item-row">
+    <td>
+      {{ record['1-1-EmriNdermarrsit'] }}
+    </td>
+    <td>
+      {{ record['1-4-Adresa'] }}
+    </td>
+    <td>
+      {{ record['1-5-NumriTelefonit'] }}
+    </td>
+    <td>
+      {{ record['1-7-EmailAdresa'] }}
+    </td>
+    <td>
+      <a class="" href="#">View</a>/
+      <a href="{{url_for('.delete_document', id=record._id)}}">Remove</a>
+    </td>
+  </tr>
+  {%endfor%}
+  </tbody>
+  </table>
+</div>
+{% endblock %}
