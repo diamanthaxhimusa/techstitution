@@ -7,36 +7,34 @@
 {% block content %}
 <script type="text/javascript">
 
-function validateForm(section, len, sec) {
-    var x = document.getElementById("forma").elements;
-    var hello = "hello";
-    for (var i = section - 1; i < len; i++) {
-        if (x[i].value == "") {
+function validateForm(id, len, sec, check) {
+
+    var inpData = document.getElementById("forma").elements;
+    var checked = false;
+    for (var i = 0; i < len; i++) {
+        if ((i != 16 && i != 20) && inpData[i].value == "" ) {
             var emri = document.getElementById("forma").elements[i].placeholder;
             alert(emri + " duhet te mbushet!");
+            document.getElementById('btt'+id).setAttribute("dest", '');
             return false;
         }
-        if (x[0].value != "" && x[1].value != "" && x[2].value != "" && x[3].value != "" && x[4].value != "" && x[5].value != "" && x[6].value != "") {
-            document.getElementById("btt").setAttribute("dest", '#sec' + sec);
-        }
-        if (x[7].value != "" && x[8].value != "" && x[9].value != "" && x[10].value != "" && x[11].value != "" && x[12].value != "") {
-            document.getElementById("btt2").setAttribute("dest", '#sec' + sec);
-        }
-    }
-}
 
-function validateChecks() {
-    var n1 = false;
-    var checkat = document.getElementsByClassName('checkk');
-    for (var i = 0; i < checkat.length; i++) {
-      if (checkat[0].checked == true || checkat[1].checked == true || checkat[2].checked ==true ||checkat[3].checked == true || checkat[4].checked == true || checkat[5].checked ==true || checkat[6].checked == true || checkat[7].checked == true || checkat[8].checked == true || checkat[9].checked == true || checkat[10].checked == true || checkat[11].checked == true || checkat[12].checked == true || checkat[13].checked == true || checkat[14].checked == true || checkat[15].checked == true ) {
-        document.getElementById("btt3").setAttribute("dest", '#sec' + 4);
-      }
-      else {
-        alert("Plotso se paku nje opsion!!!");
-        document.getElementById("btt3").setAttribute("dest", '');
-        return false;
-      }
+        if (inpData[0].value != "" && inpData[1].value != "" && inpData[2].value != "" && inpData[3].value != "" && inpData[4].value != "" && inpData[5].value != "" && inpData[6].value != "") {
+            document.getElementById('btt'+id).setAttribute("dest", '#sec' + sec);
+        }
+        if (inpData[7].value != "" && inpData[8].value != "" && inpData[9].value != "" && inpData[10].value != "" && inpData[11].value != "" && inpData[12].value != "") {
+          document.getElementById('btt'+id).setAttribute("dest", '#sec' + sec);
+        }
+        if (check==1) {
+            if (inpData[13].checked == true || inpData[14].checked == true || inpData[15].checked ==true || inpData[17].checked == true || inpData[18].checked ==true || inpData[19].checked == true || inpData[21].checked == true || inpData[22].checked == true || inpData[23].checked == true || inpData[24].checked == true || inpData[25].checked == true || inpData[26].checked == true || inpData[27].checked == true || inpData[28].checked == true || inpData[29].checked == true || inpData[30].checked == true ) {
+              document.getElementById('btt'+id).setAttribute("dest", '#sec' + sec);
+            }
+            else {
+              alert("Plotso se paku nje opsion!!!");
+              document.getElementById('btt'+id).setAttribute("dest", '');
+              return false;
+            }
+        }
     }
 }
 
@@ -71,44 +69,44 @@ function validateChecks() {
     <ul class="collapsible" data-collapsible="accordion">
         <li>
             <div class="collapsible-header active" id="sec1"><span class="icon-number-one"></span> TE DHENAT PER NDERMARRESIN:</div>
-            <div class="row collapsible-body">
-                <div class="input-field col s12">
-                    <input placeholder="1.1 Emri i Ndermarresit(Entiteti) " id="EmriNdermarrsit" type="text" name="1-1-EmriNdermarrsit" class="validate" required>
-                    <label for="" class="active" data-error="Emri eshte gabim!" data-success="Sukses!">1.1 Emri i Ndermarresit(Entiteti)</label>
-                </div>
-                <div class="input-field col s12">
-                    <input placeholder="1.2 Numri i Regjistrimit te Biznesit" id="NrRegjistritBiz" type="number" name="1-2-NumriRegjistritBiznesit" class="validate" required>
-                    <label for="" class="active" data-error="Numri eshte gabim!" data-success="Sukses!">1.2 Numri i Regjistrimit te Biznesit</label>
-                </div>
-                <div class="input-field col s12">
-                    <input placeholder="1.3 Numri fiskal" id="NrFiskal" type="number" name="1-3-NumriFiskal" class="validate" required>
-                    <label for="" class="active" data-error="Numri eshte gabim!" data-success="Sukses!">1.3 Numri fiskal</label>
-                </div>
-                <div class="input-field col s12">
-                    <input placeholder="1.4 Adresa" id="Adresa" type="text" name="1-4-Adresa" class="validate" required>
-                    <label for="" class="active" data-error="Adresa eshte gabim!" data-success="Sukses!">1.4 Adresa</label>
-                </div>
-                <div class="input-field col s12">
-                    <input placeholder="1.5 Numri i Telefonit" id="NumriTelefonit" type="number" name="1-5-NumriTelefonit" class="validate" required>
-                    <label for="" class="active" data-error="Numri eshte gabim!" data-success="Sukses!">1.5 Numri i Telefonit</label>
-                </div>
-                <div class="input-field col s12">
-                    <input placeholder="1.6 Numri Fiskal" id="nrfiskal" type="number" name="1-6-NumriFiskal" class="validate" required>
-                    <label for="" class="active" data-error="Numri eshte gabim!" data-success="Sukses!">1.6 Numri Fiskal</label>
-                </div>
-                <div class="input-field col s12">
-                    <input placeholder="1.7 E-mail adresa" id="email" type="email" class="validate" name="1-7-EmailAdresa" class="validate" required>
-                    <label for="email" data-error="E-mail eshte gabim!" data-success="Sukses!" class="active">1.7 E-mail adresa</label>
-                </div>
+              <div class="row collapsible-body">
+                  <div class="input-field col s12">
+                      <input placeholder="1.1 Emri i Ndermarresit(Entiteti) " id="EmriNdermarrsit" type="text" name="1-1-EmriNdermarrsit" class="validate" autofocus  >
+                      <label for="" class="active" data-error="Emri eshte gabim!" data-success="Sukses!">1.1 Emri i Ndermarresit(Entiteti)</label>
+                  </div>
+                  <div class="input-field col s12">
+                      <input placeholder="1.2 Numri i Regjistrimit te Biznesit" id="NrRegjistritBiz" type="number" name="1-2-NumriRegjistritBiznesit" class="validate" required>
+                      <label for="" class="active" data-error="Numri eshte gabim!" data-success="Sukses!">1.2 Numri i Regjistrimit te Biznesit</label>
+                  </div>
+                  <div class="input-field col s12">
+                      <input placeholder="1.3 Numri fiskal" id="NrFiskal" type="number" name="1-3-NumriFiskal" class="validate" required>
+                      <label for="" class="active" data-error="Numri eshte gabim!" data-success="Sukses!">1.3 Numri fiskal</label>
+                  </div>
+                  <div class="input-field col s12">
+                      <input placeholder="1.4 Adresa" id="Adresa" type="text" name="1-4-Adresa" class="validate" required>
+                      <label for="" class="active" data-error="Adresa eshte gabim!" data-success="Sukses!">1.4 Adresa</label>
+                  </div>
+                  <div class="input-field col s12">
+                      <input placeholder="1.5 Numri i Telefonit" id="NumriTelefonit" type="number" name="1-5-NumriTelefonit" class="validate" required>
+                      <label for="" class="active" data-error="Numri eshte gabim!" data-success="Sukses!">1.5 Numri i Telefonit</label>
+                  </div>
+                  <div class="input-field col s12">
+                      <input placeholder="1.6 Numri Fiskal" id="nrfiskal" type="number" name="1-6-NumriFiskal" class="validate" required>
+                      <label for="" class="active" data-error="Numri eshte gabim!" data-success="Sukses!">1.6 Numri Fiskal</label>
+                  </div>
+                  <div class="input-field col s12">
+                      <input placeholder="1.7 E-mail adresa" id="email" type="email" class="validate" name="1-7-EmailAdresa" class="validate" required>
+                      <label for="email" data-error="E-mail eshte gabim!" data-success="Sukses!" class="active">1.7 E-mail adresa</label>
+                  </div>
 
-                <div class="col s12">
-                    <a class="btn bt waves-effect waves-light" data-click="true" onclick="validateForm(1,7,2)" id="btt">Vazhdo!</a>
-                </div>
+              <div class="col s12">
+                  <a class="btn bt waves-effect waves-light" data-click="true" onclick="validateForm(1,7,2,0)" id="btt1">Vazhdo!</a>
+              </div>
             </div>
         </li>
         <li>
             <div class="collapsible-header sec2" id="sec2"><span class="icon-number-two"></span> TE DHENAT PER ZERTARIN LIGJERISHT TE PERGJITHSHEM:</div>
-            <div class="collapsible-body">
+              <div class="collapsible-body">
                 <div class="input-field col s12">
                     <input placeholder="2.1 Emri i Zyrtarit" id="" type="text" name="2-1-EmriZyrtarit" class="validate" required>
                     <label for="" class="active" data-error="Emri eshte gabim!" data-success="Sukses!">2.1 Emri i Zyrtarit</label>
@@ -133,14 +131,14 @@ function validateChecks() {
                     <input placeholder="2.6 Numri i ID" id="" type="number" name="2-6-NumriID" class="validate" required>
                     <label for="" class="active" data-error="Numri eshte gabim!" data-success="Sukses!">2.6 Numri i ID</label>
                 </div>
-                <div class="col s12">
-                  <a class="btn bt waves-effect waves-light" data-click="true" onclick="validateForm(1,13,3)" id="btt2">Vazhdo!</a>
-                </div>
+              <div class="col s12">
+                <a class="btn bt waves-effect waves-light" data-click="true" onclick="validateForm(2,13,3,0)" id="btt2">Vazhdo!</a>
+              </div>
             </div>
         </li>
         <li>
             <div class="collapsible-header" id="sec3"><span class="icon-number-three"></span> AKTIVITETET TE CILAT NJOFTOHEN/CREGJISTROHEN:</div>
-            <div class="collapsible-body">
+              <div class="collapsible-body">
                 <table class="highlight responsive-table bordered">
                     <thead>
                         <tr>
@@ -163,10 +161,9 @@ function validateChecks() {
                                 <input type="checkbox" class="etc_check checkk" name="3-1-Tjera" id="etc" />
                                 <label for="etc">Tjera:</label>
 
-                                <input placeholder="Specifiko" name="3-1-Tjera-spec" type="text" class="specify animated fadeIn validate specify-input">
+                                <textarea placeholder="Specifiko" name="3-1-Tjera-spec" type="text" class="materialize-textarea specify animated fadeIn validate specify-input"></textarea>
                             </td>
                         </tr>
-
 
                         <tr class="table-row">
                             <td class="num-data">2.</td>
@@ -180,7 +177,7 @@ function validateChecks() {
                                 <input type="checkbox" class="etc_check_2 checkk" name="3-2-Tjera" id="etc-2" />
                                 <label for="etc-2">Shërbime tjera:</label>
 
-                                <input placeholder="Specifiko" type="text" name="3-2-Tjera-spec" class="specify-2 animated fadeIn validate specify-input">
+                                <textarea placeholder="Specifiko" type="text" name="3-2-Tjera-spec" class="materialize-textarea specify-2 animated fadeIn validate specify-input"></textarea>
                             </td>
                         </tr>
 
@@ -240,8 +237,7 @@ function validateChecks() {
                             <td>Ofrimi i shërbimeve të transmetimit të të dhënave (Internetit)</td>
                             <td class="tableData">
                                 <input type="checkbox" class="checkk" name="3-8-Sherb-Intern" id="public-data-internet-satellite" />
-                                <label for="public-data-internet-satellite">Ofrimi i shërbimeve publike të transmetimit të të
-                      dhënave(internetit)</label><br/>
+                                <label for="public-data-internet-satellite">Ofrimi i shërbimeve publike të transmetimit të të dhënave(internetit)</label><br/>
                             </td>
                         </tr>
 
@@ -256,9 +252,10 @@ function validateChecks() {
 
                     </tbody>
                 </table>
-                <div class="col s12">
-                    <a class="btn bt waves-effect waves-light" data-click="true" id="btt3" onclick="validateForm(1,13,3)">Vazhdo!</a>
-                </div>
+              <div class="col s12">
+                <a class="btn bt waves-effect waves-light" data-click="true" id="btt3" onclick="validateForm(3,31,4,1)">Vazhdo!</a>
+              </div>
+            </div>
         </li>
         <li>
             <div class="collapsible-header" id="sec4"><span class="icon-number-four"></span> PERSHKRIMI I AKTIVITETIT DHE FAZA E OFRIMIT:</div>
