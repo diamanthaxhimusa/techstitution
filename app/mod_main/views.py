@@ -12,7 +12,7 @@ def index():
     elif request.method == 'POST':
         data = request.form.to_dict()
         db.insert(data)
-        return render_template('list.html')
+        return redirect(url_for('.listo'))
 
 @mod_main.route('/<string:id>', methods=['GET'])
 def get_doc(id):

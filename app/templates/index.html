@@ -6,7 +6,6 @@
 
 {% block content %}
 <script type="text/javascript">
-
 function validateForm(id, len, sec, check) {
 
     var inpData = document.getElementById("forma").elements;
@@ -40,29 +39,6 @@ function validateForm(id, len, sec, check) {
 
 </script>
 <script type="text/javascript">
-    $(document).ready(function() {
-
-        $('[data-click]').on('click', function(e) {
-            $($(this).attr('dest')).trigger('click');
-        });
-        $("#forma").submit(function(e) {
-            alert(
-                "!!! Autoriteti do te procedoj me shqyrtimin e Formularit te Njoftimit vetem pas kompletimit te Dosjes dhe do ta njoftoj ndermarresin per vendosjen ne Regjistrin e Njoftimit brenda 5 (pese) diteve te punes nga ta data e kompletimit te Njoftimit"
-            );
-        });
-        $(".etc_check").on('click', function() {
-            if ($(this).attr('checked', 'checked')) {
-                $('.specify').toggleClass("specify-input");
-            }
-        });
-        $(".etc_check_2").on('click', function() {
-            if ($(this).attr('checked', 'checked')) {
-                $('.specify-2').toggleClass("specify-input");
-            }
-        });
-        // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
-        $('.modal').modal();
-    });
 </script>
 
 <form method="POST" id="forma">
@@ -91,7 +67,7 @@ function validateForm(id, len, sec, check) {
                       <label for="" class="active" data-error="Numri eshte gabim!" data-success="Sukses!">1.5 Numri i Telefonit</label>
                   </div>
                   <div class="input-field col s12">
-                      <input placeholder="1.6 Numri Fiskal" id="nrfiskal" type="number" name="1-6-NumriFiskal" class="validate" required>
+                      <input placeholder="1.6 Numri Faksit" id="nrfiskal" type="number" name="1-6-NumriFiskal" class="validate" required>
                       <label for="" class="active" data-error="Numri eshte gabim!" data-success="Sukses!">1.6 Numri Fiskal</label>
                   </div>
                   <div class="input-field col s12">
