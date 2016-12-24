@@ -5,12 +5,9 @@
 {% block content %}
 <script type="text/javascript">
     function validateForm(id, len, sec, check) {
-
         var inpData = document.getElementById("forma").elements;
         var checked = false;
-
         var messages = [' duhet te mbushet !!!',' Plotso se paku nje opsion !!!',' Insertoni fajllet !!!']
-
         for (var i = 0; i < len; i++) {
             if ((i != 16 && i != 20) && inpData[i].value == "") {
                 var emri = document.getElementById("forma").elements[i].placeholder;
@@ -44,11 +41,11 @@
                   document.getElementById('btt' + id).setAttribute("dest", '#sec' + sec);
                   document.getElementById('sec4').style.backgroundColor = '#49ff25';
               }
-
             if (check == 2 ) {
                 if (inpData[33].value != "" && inpData[35].value != "" && inpData[37].value != "") {
                     document.getElementById('btt' + id).setAttribute("dest", '#sec' + sec);
                     document.getElementById('sec5').style.backgroundColor = '#49ff25';
+                    document.getElementById('perfundo').setAttribute('href','#modal1')
                 } else {
                     $('#modal2').modal('open');
                     document.getElementById('error').innerHTML = "sektori 5" + messages[2];
@@ -57,7 +54,6 @@
                     return false;
                 }
             }
-
         }
     }
     $(document).ready(function() {
@@ -414,7 +410,7 @@
             <div class="row collapsible-body">
                 <div class="input-field col s12">
                 </div>
-                <a class="modal-trigger waves-effect waves-light btn bt" href="#modal1">Perfundo</a>
+                <a class="modal-trigger waves-effect waves-light btn bt" id="perfundo">Perfundo</a>
 
                 <!-- Modal Structure -->
                 <div id="modal1" class="modal modal-fixed-footer">
@@ -460,6 +456,7 @@
                       </button>
                     </div>
                 </div>
+
             </div>
         </li>
     </ul>
