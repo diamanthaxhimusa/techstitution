@@ -1,0 +1,151 @@
+{% extends 'layout.html' %}
+
+{% block header %}
+  <h4 class="center-align">Operatori {{ operatori['1-1-EmriNdermarrsit'] }}</h4>
+{% endblock %}
+{% block content%}
+<style media="screen">
+  td{
+    border: 1px solid #d1d1d1;
+}
+</style>
+<div class="card-panel">
+    <table class="highlight bordered responsive-table">
+        <thead>
+            <tr>
+                <th>,.....</th>
+                <th>rezultati</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="item-row">
+                <td>Emri i Ndërmarrësit (Entiteti)</td>
+                <td>{{ operatori['1-1-EmriNdermarrsit'] }}</td>
+            </tr>
+            <tr class="item-row">
+                <td>Numri i Regjistrimit të Biznesit</td>
+                <td>{{ operatori['1-2-NumriRegjistritBiznesit'] }}</td>
+            </tr>
+            <tr class="item-row">
+                <td>Numri fiskal</td>
+                <td>{{ operatori['1-3-NumriFiskal'] }}</td>
+            </tr>
+            <tr class="item-row">
+                <td>Adresa</td>
+                <td>{{ operatori['1-4-Adresa'] }}</td>
+            </tr>
+            <tr class="item-row">
+                <td>Numri i Telefonit</td>
+                <td>{{ operatori['1-5-NumriTelefonit'] }}</td>
+            </tr>
+            <tr class="item-row">
+                <td>Numri i Faksit</td>
+                <td>{{ operatori['1-6-NumriFiskal'] }}</td>
+            </tr>
+            <tr class="item-row">
+                <td>E-mail adresa</td>
+                <td>{{ operatori['1-7-EmailAdresa'] }}</td>
+            </tr>
+            <tr class="item-row">
+                <td>Emri i zyrtarit</td>
+                <td>{{ operatori['2-1-EmriZyrtarit'] }}</td>
+            </tr>
+            <tr class="item-row">
+                <td>Adresa</td>
+                <td>{{ operatori['2-2-Adresa'] }}</td>
+            </tr>
+            <tr class="item-row">
+                <td>Numri i Telefonit</td>
+                <td>{{ operatori['2-3-NumriTelefonit'] }}</td>
+            </tr>
+            <tr class="item-row">
+                <td>Numri i Faksit</td>
+                <td>{{ operatori['2-4-NumriFaksit'] }}</td>
+            </tr>
+            <tr class="item-row">
+                <td>E-mail adresa</td>
+                <td>{{ operatori['2-5-EmailAdresa'] }}</td>
+            </tr>
+            <tr class="item-row">
+                <td>Numri i ID</td>
+                <td>{{ operatori['2-6-NumriID'] }}</td>
+            </tr>
+            <tr class="item-row">
+                <td>Ofrimi i rrjetit publik fiks</td>
+                <td>
+                    <ul>
+                        <li>Lokal: <b>{{ operatori['3-1-Lokal'] }}</b></li>
+                        <li>Nacional: <b>{{operatori['3-1-Nacional'] }}</b></li>
+                        <li>Tjera:<b>{{operatori['3-1-Tjera-spec'] }}</b></li>
+                    </ul>
+                  </td>
+            </tr>
+            <tr class="item-row">
+                <td>Ofrimi i shërbimeve publike fikse</td>
+                <td>
+                  <ul>
+                    <li>Shërbime telefonike lokale/nacionale: <b>{{ operatori['3-2-lokale/nacionale'] }}</b></li>
+                    <li>Shërbime telefonike ndërkombëtare: <b>{{ operatori['3-2-nderkombetare'] }}</b></li>
+                    <li>Shërbime tjera: <b>{{ operatori['3-2-Tjera-spec'] }}</b></li>
+                  </ul>
+                </td>
+            </tr>
+            <tr class="item-row">
+                <td>Ofrimi i rrjetit publik mobil</td>
+                <td>
+                  <ul>
+                    <li>Lokal: <b>{{ operatori['3-3-Lokal'] }}</b></li>
+                    <li>Nacional: <b>{{ operatori['3-3-Nacional'] }}</b></li>
+                  </ul>
+                </td>
+            </tr>
+            <tr class="item-row">
+                <td>Ofrimi i shërbimeve publike mobile</td>
+                <td>
+                  <ul>
+                    <li>Shërbime telefonike të zërit: <b>{{ operatori['3-4-Sherb-Tel-zerit'] }}</b></li>
+                    <li>Transmetim të dhënash: <b>{{ operatori['3-4-Transm-data'] }}</b></li>
+                  </ul>
+                </td>
+            </tr>
+            <tr class="item-row">
+                <td>Ofrimi i shërbimeve të linjave me qira</td>
+                <td>
+                  <ul>
+                    <li>Fibër optik të pa-ndriçuar: <b>{{ operatori['3-5-FiberOptik'] }}</b></li>
+                    <li>Linja tjera me qira: <b>{{ operatori['3-5-LinjaTjeraQira'] }}</b></li>
+                  </ul>
+              </td>
+            </tr>
+            <tr class="item-row">
+                <td>Ofrimi i rrjetave publike me transmetim satelitor</td>
+                <td>Ofrimi i rrjetave publike me transmetim satelitor: <b>{{ operatori['3-6-Rrjeta-Trans-Sat'] }}</b></td>
+            </tr>
+            <tr class="item-row">
+                <td>Ofrimi i shërbimeve publike satelitore</td>
+                <td>Ofrimi i shërbimeve publike satelitore: <b>{{ operatori['3-7-Sherbime-Publike-Sat'] }}</b></td>
+            </tr>
+            <tr class="item-row">
+                <td>Ofrimi i shërbimeve të transmetimit të të dhënave (Internetit)/td>
+                    <td>Ofrimi i shërbimeve publike të transmetimit të të dhënave (internetit): <b>{{ operatori['3-8-Sherb-Intern'] }}</b></td>
+            </tr>
+            <tr class="item-row">
+                <td>Ofrimi i shërbimeve me vlerë të shtuar</td>
+                <td>Ofrimi i shërbimeve me vlerë të shtuar: <b>{{ operatori['3-9-SherbMeVlere'] }}</b></td>
+            </tr>
+            <tr class="item-row">
+                <td> Përshkrimi i rrjetit dhe/ose shërbimit që do të ofrohet:</td>
+                <td>{{ operatori['4-1-PershkrimiRrjetitOfrohet'] }}</b></td>
+            </tr>
+            <tr class="item-row">
+                <td>Faza e Ofrimit</td>
+                <td>{{ operatori['4-2-FazaOfrimit'] }}</td>
+            </tr>
+            <tr class="item-row">
+                <td>Ndërmarrja kërkon që t’i lëshohet certifikata e konfirmimit të njoftimit për ofrimin e rrjeteve dhe/ose shërbimeve publike të komunikimeve elektronike të njoftuara përmes këtij formulari: </td>
+                <td>{{ operatori['6-Po/Jo'] }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+{% endblock %}

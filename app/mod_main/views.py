@@ -24,14 +24,23 @@ def get_doc(id):
     else:
         return "bad request"
 
-@mod_main.route('/listo',methods=['GET'])
+@mod_main.route('/operatoret',methods=['GET'])
 def listo():
     db = mongo.db.arkep
     myCursor = db.find();
     if request.method == 'GET':
         return render_template('list.html', myCursor=myCursor)
 
-@mod_main.route('/delete_document<id>')
+@mod_main.route('/operatoret/<string:op>',methods=['GET'])
+def op_view(op):
+    db = mongo.db.arkep
+    operatori = db.find_one({"1-1-EmriNdermarrsit":op})
+    if request.method == 'GET':
+        return render_template('operatori.html', operatori=operatori)
+    else:
+        return 'bad request'
+
+@mod_main.route('/operatoret/delete_document<id>')
 def delete_document(id):
     db = mongo.db.arkep
     db.remove({"_id":ObjectId(id)})

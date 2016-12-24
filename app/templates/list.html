@@ -3,6 +3,13 @@
   <h4 class="center-align" style="margin-bottom:30px">Ndermarresit</h4>
 {% endblock %}
 {% block content%}
+<style media="screen">
+  td{
+    border: 1px solid #d1d1d1;
+    border-top-width: 1px;
+    border-top-color: #216E67;
+  }
+</style>
 <div class="card-panel">
   <table class="highlight bordered responsive-table">
   <thead>
@@ -30,7 +37,7 @@
       {{ record['1-7-EmailAdresa'] }}
     </td>
     <td>
-      <a class="" href="#">View</a>/
+      <a class="" href="{{url_for('.op_view',op=record['1-1-EmriNdermarrsit'])}}">View</a>/
       <a href="{{url_for('.delete_document', id=record._id)}}">Remove</a>
     </td>
   </tr>

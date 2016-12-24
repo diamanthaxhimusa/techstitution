@@ -1,88 +1,137 @@
-
 {% extends "layout.html" %}
 {% block header %}
-  <h4 class="center-align">Formular I Njoftimit per Hyrje ne aktivitetin e Komunave Elektronike</h4>
+<h4 class="center-align">Formular I Njoftimit per Hyrje ne aktivitetin e Komunave Elektronike</h4>
 {% endblock %}
-
 {% block content %}
 <script type="text/javascript">
-function validateForm(id, len, sec, check) {
+    function validateForm(id, len, sec, check) {
 
-    var inpData = document.getElementById("forma").elements;
-    var checked = false;
-    for (var i = 0; i < len; i++) {
-        if ((i != 16 && i != 20) && inpData[i].value == "" ) {
-            var emri = document.getElementById("forma").elements[i].placeholder;
-            alert(emri + " duhet te mbushet!");
-            document.getElementById('btt'+id).setAttribute("dest", '');
-            return false;
-        }
+        var inpData = document.getElementById("forma").elements;
+        var checked = false;
 
-        if (inpData[0].value != "" && inpData[1].value != "" && inpData[2].value != "" && inpData[3].value != "" && inpData[4].value != "" && inpData[5].value != "" && inpData[6].value != "") {
-            document.getElementById('btt'+id).setAttribute("dest", '#sec' + sec);
-        }
-        if (inpData[7].value != "" && inpData[8].value != "" && inpData[9].value != "" && inpData[10].value != "" && inpData[11].value != "" && inpData[12].value != "") {
-          document.getElementById('btt'+id).setAttribute("dest", '#sec' + sec);
-        }
-        if (check==1) {
-            if (inpData[13].checked == true || inpData[14].checked == true || inpData[15].checked ==true || inpData[17].checked == true || inpData[18].checked ==true || inpData[19].checked == true || inpData[21].checked == true || inpData[22].checked == true || inpData[23].checked == true || inpData[24].checked == true || inpData[25].checked == true || inpData[26].checked == true || inpData[27].checked == true || inpData[28].checked == true || inpData[29].checked == true || inpData[30].checked == true ) {
-              document.getElementById('btt'+id).setAttribute("dest", '#sec' + sec);
+        var messages = [' duhet te mbushet !!!',' Plotso se paku nje opsion !!!',' Insertoni fajllet !!!']
+
+        for (var i = 0; i < len; i++) {
+            if ((i != 16 && i != 20) && inpData[i].value == "") {
+                var emri = document.getElementById("forma").elements[i].placeholder;
+                $('#modal2').modal('open');
+                document.getElementById('error').innerHTML = emri + messages[0] + inpData.length;
+                document.getElementById('btt' + id).setAttribute("dest", '');
+                document.getElementById('sec' + id).style.backgroundColor = '#fff';
+                return false;
             }
-            else {
-              alert("Plotso se paku nje opsion!!!");
-              document.getElementById('btt'+id).setAttribute("dest", '');
-              return false;
+              if (inpData[0].value != "" && inpData[1].value != "" && inpData[2].value != "" && inpData[3].value != "" && inpData[4].value != "" && inpData[5].value != "" && inpData[6].value != "") {
+                  document.getElementById('btt' + id).setAttribute("dest", '#sec' + sec);
+                  document.getElementById('sec1').style.backgroundColor = '#49ff25';
+              }
+              if (inpData[7].value != "" && inpData[8].value != "" && inpData[9].value != "" && inpData[10].value != "" && inpData[11].value != "" && inpData[12].value != "") {
+                  document.getElementById('btt' + id).setAttribute("dest", '#sec' + sec);
+                  document.getElementById('sec2').style.backgroundColor = '#49ff25';
+              }
+            if (check == 1) {
+                if (inpData[13].checked == true || inpData[14].checked == true || inpData[15].checked == true || inpData[17].checked == true || inpData[18].checked == true || inpData[19].checked == true || inpData[21].checked == true || inpData[22].checked == true || inpData[23].checked == true || inpData[24].checked == true || inpData[25].checked == true || inpData[26].checked == true || inpData[27].checked == true || inpData[28].checked == true || inpData[29].checked == true ||inpData[30].checked == true) {
+                    document.getElementById('btt' + id).setAttribute("dest", '#sec' + sec);
+                    document.getElementById('sec3').style.backgroundColor = '#49ff25';
+                } else {
+                    $('#modal2').modal('open');
+                    document.getElementById('error').innerHTML = "sektori 3" + messages[1];
+                    document.getElementById('btt' + id).setAttribute("dest", '');
+                    document.getElementById('sec' + id).style.backgroundColor = '#fff';
+                    return false;
+                }
             }
+              if (inpData[31].value != "" && inpData[32].value != "") {
+                  document.getElementById('btt' + id).setAttribute("dest", '#sec' + sec);
+                  document.getElementById('sec4').style.backgroundColor = '#49ff25';
+              }
+
+            if (check == 2 ) {
+                if (inpData[33].value != "" && inpData[35].value != "" && inpData[37].value != "") {
+                    document.getElementById('btt' + id).setAttribute("dest", '#sec' + sec);
+                    document.getElementById('sec5').style.backgroundColor = '#49ff25';
+                } else {
+                    $('#modal2').modal('open');
+                    document.getElementById('error').innerHTML = "sektori 5" + messages[2];
+                    document.getElementById('btt' + id).setAttribute("dest", '');
+                    document.getElementById('sec' + id).style.backgroundColor = '#fff';
+                    return false;
+                }
+            }
+
         }
     }
-}
+    $(document).ready(function() {
+        $('input[type=file]').change(function() {
+            var val = $(this).val().toLowerCase();
+            var regex = new RegExp("(.*?)\.(png|jpg|pdf|xml|bmp|ppt|xls)$");
+            if (!(regex.test(val))) {
+                $(this).val('');
+                alert('Ju lutem insertoni formatin valid (.pdf, .png, .xls, .jpg)');
+            }
+        });
+    });
+</script>
 
-</script>
-<script type="text/javascript">
-</script>
+
+
+<!-- Modal Structure -->
+<div id="modal2" class="modal">
+    <div class="modal-content" id="modali">
+      <h6 id="error" style="color:red;text-align:center"></h6>
+    </div>
+    <div class="modal-footer">
+        <button class=" modal-action modal-close waves-effect waves-green btn-flat">OK</button>
+    </div>
+</div>
+
+
+
+
+
+
 
 <form method="POST" id="forma">
     <ul class="collapsible" data-collapsible="accordion">
         <li>
             <div class="collapsible-header active" id="sec1"><span class="icon-number-one"></span> TE DHENAT PER NDERMARRESIN:</div>
-              <div class="row collapsible-body">
-                  <div class="input-field col s12">
-                      <input placeholder="1.1 Emri i Ndermarresit(Entiteti) " id="EmriNdermarrsit" type="text" name="1-1-EmriNdermarrsit" class="validate" autofocus  >
-                      <label for="" class="active" data-error="Emri eshte gabim!" data-success="Sukses!">1.1 Emri i Ndermarresit(Entiteti)</label>
-                  </div>
-                  <div class="input-field col s12">
-                      <input placeholder="1.2 Numri i Regjistrimit te Biznesit" id="NrRegjistritBiz" type="number" name="1-2-NumriRegjistritBiznesit" class="validate" required>
-                      <label for="" class="active" data-error="Numri eshte gabim!" data-success="Sukses!">1.2 Numri i Regjistrimit te Biznesit</label>
-                  </div>
-                  <div class="input-field col s12">
-                      <input placeholder="1.3 Numri fiskal" id="NrFiskal" type="number" name="1-3-NumriFiskal" class="validate" required>
-                      <label for="" class="active" data-error="Numri eshte gabim!" data-success="Sukses!">1.3 Numri fiskal</label>
-                  </div>
-                  <div class="input-field col s12">
-                      <input placeholder="1.4 Adresa" id="Adresa" type="text" name="1-4-Adresa" class="validate" required>
-                      <label for="" class="active" data-error="Adresa eshte gabim!" data-success="Sukses!">1.4 Adresa</label>
-                  </div>
-                  <div class="input-field col s12">
-                      <input placeholder="1.5 Numri i Telefonit" id="NumriTelefonit" type="number" name="1-5-NumriTelefonit" class="validate" required>
-                      <label for="" class="active" data-error="Numri eshte gabim!" data-success="Sukses!">1.5 Numri i Telefonit</label>
-                  </div>
-                  <div class="input-field col s12">
-                      <input placeholder="1.6 Numri Faksit" id="nrfiskal" type="number" name="1-6-NumriFiskal" class="validate" required>
-                      <label for="" class="active" data-error="Numri eshte gabim!" data-success="Sukses!">1.6 Numri Fiskal</label>
-                  </div>
-                  <div class="input-field col s12">
-                      <input placeholder="1.7 E-mail adresa" id="email" type="email" class="validate" name="1-7-EmailAdresa" class="validate" required>
-                      <label for="email" data-error="E-mail eshte gabim!" data-success="Sukses!" class="active">1.7 E-mail adresa</label>
-                  </div>
+            <div class="row collapsible-body">
+                <div class="input-field col s12">
+                    <input placeholder="1.1 Emri i Ndermarresit(Entiteti) " id="EmriNdermarrsit" type="text" name="1-1-EmriNdermarrsit" class="validate" autofocus>
+                    <label for="" class="active" data-error="Emri eshte gabim!" data-success="Sukses!">1.1 Emri i Ndermarresit(Entiteti)</label>
+                </div>
+                <div class="input-field col s12">
+                    <input placeholder="1.2 Numri i Regjistrimit te Biznesit" id="NrRegjistritBiz" type="number" name="1-2-NumriRegjistritBiznesit" class="validate" required>
+                    <label for="" class="active" data-error="Numri eshte gabim!" data-success="Sukses!">1.2 Numri i Regjistrimit te Biznesit</label>
+                </div>
+                <div class="input-field col s12">
+                    <input placeholder="1.3 Numri fiskal" id="NrFiskal" type="number" name="1-3-NumriFiskal" class="validate" required>
+                    <label for="" class="active" data-error="Numri eshte gabim!" data-success="Sukses!">1.3 Numri fiskal</label>
+                </div>
+                <div class="input-field col s12">
+                    <input placeholder="1.4 Adresa" id="Adresa" type="text" name="1-4-Adresa" class="validate" required>
+                    <label for="" class="active" data-error="Adresa eshte gabim!" data-success="Sukses!">1.4 Adresa</label>
+                </div>
+                <div class="input-field col s12">
+                    <input placeholder="1.5 Numri i Telefonit" id="NumriTelefonit" type="number" name="1-5-NumriTelefonit" class="validate" required>
+                    <label for="" class="active" data-error="Numri eshte gabim!" data-success="Sukses!">1.5 Numri i Telefonit</label>
+                </div>
+                <div class="input-field col s12">
+                    <input placeholder="1.6 Numri Faksit" id="nrfiskal" type="number" name="1-6-NumriFiskal" class="validate" required>
+                    <label for="" class="active" data-error="Numri eshte gabim!" data-success="Sukses!">1.6 Numri Faksit</label>
+                </div>
+                <div class="input-field col s12">
+                    <input placeholder="1.7 E-mail adresa" id="email" type="email" class="validate" name="1-7-EmailAdresa" class="validate" required>
+                    <label for="email" data-error="E-mail eshte gabim!" data-success="Sukses!" class="active">1.7 E-mail adresa</label>
+                </div>
 
-              <div class="col s12">
-                  <a class="btn bt waves-effect waves-light" data-click="true" onclick="validateForm(1,7,2,0)" id="btt1">Vazhdo!</a>
-              </div>
+                <div class="col s12">
+                    <a class="btn bt waves-effect waves-light" data-click="true" onclick="validateForm(1,7,2,0)" id="btt1">Vazhdo!</a>
+                </div>
             </div>
         </li>
         <li>
             <div class="collapsible-header sec2" id="sec2"><span class="icon-number-two"></span> TE DHENAT PER ZERTARIN LIGJERISHT TE PERGJITHSHEM:</div>
-              <div class="collapsible-body">
+            <div class="row collapsible-body">
                 <div class="input-field col s12">
                     <input placeholder="2.1 Emri i Zyrtarit" id="" type="text" name="2-1-EmriZyrtarit" class="validate" required>
                     <label for="" class="active" data-error="Emri eshte gabim!" data-success="Sukses!">2.1 Emri i Zyrtarit</label>
@@ -107,14 +156,14 @@ function validateForm(id, len, sec, check) {
                     <input placeholder="2.6 Numri i ID" id="" type="number" name="2-6-NumriID" class="validate" required>
                     <label for="" class="active" data-error="Numri eshte gabim!" data-success="Sukses!">2.6 Numri i ID</label>
                 </div>
-              <div class="col s12">
-                <a class="btn bt waves-effect waves-light" data-click="true" onclick="validateForm(2,13,3,0)" id="btt2">Vazhdo!</a>
-              </div>
+                <div class="col s12">
+                    <a class="btn bt waves-effect waves-light" data-click="true" onclick="validateForm(2,13,3,0)" id="btt2">Vazhdo!</a>
+                </div>
             </div>
         </li>
         <li>
             <div class="collapsible-header" id="sec3"><span class="icon-number-three"></span> AKTIVITETET TE CILAT NJOFTOHEN/CREGJISTROHEN:</div>
-              <div class="collapsible-body">
+            <div class="row collapsible-body">
                 <table class="highlight responsive-table bordered">
                     <thead>
                         <tr>
@@ -228,135 +277,141 @@ function validateForm(id, len, sec, check) {
 
                     </tbody>
                 </table>
-              <div class="col s12">
-                <a class="btn bt waves-effect waves-light" data-click="true" id="btt3" onclick="validateForm(3,31,4,1)">Vazhdo!</a>
-              </div>
+                <div class="col s12">
+                    <a class="btn bt waves-effect waves-light" data-click="true" id="btt3" onclick="validateForm(3,31,4,1)">Vazhdo!</a>
+                </div>
             </div>
         </li>
         <li>
             <div class="collapsible-header" id="sec4"><span class="icon-number-four"></span> PERSHKRIMI I AKTIVITETIT DHE FAZA E OFRIMIT:</div>
-            <div class="collapsible-body">
-              <table class="bordered highlight">
-                <tr>
-                  <td style="border-right:1px solid #D0D0D0">
-                    <br><i style="border-bottom: 1px solid #D0D0D0;">Përshkrimi i rrjetit dhe/ose shërbimit që do të ofrohet:</i></br>
-                    <br>(Të jepen përshkrime të detajuara për secilin aktivitet të njoftuar duke specifikuar:</br>
-                    <ul class="browser-default" id="ulista">
-                      <li>A do të përdoret rrjeti vetanak apo ndonjë rrjet tjetër</li>
-                      <li>Teknologjia e cila do të përdoret, Radio frekuencat, të cilat planifikohen të përdoren</li>
-                      <li>Lista e shërbimeve që planifikohen të ofrohen,</li>
-                      <li>etj.</li>
-                    </ul>
-                    <br>Mund të përdoret ndonjë Shtojcë i veçantë në rast se hapësira nuk është e mjaftueshme)</br>
-                  </td>
-                  <td>
-                    <div class="input-field col s12">
-                      <textarea id="textarea1" class="materialize-textarea" name="4-1-PershkrimiRrjetitOfrohet" class="validate" required></textarea>
-                       <label for="textarea1">Pershkruaj</label>
-                     </div>
-                  </td>
+            <div class="row collapsible-body">
+                <div class="col s12">
+                    <table class="bordered highlight">
+                        <tr>
+                            <td style="border-right:1px solid #D0D0D0">
+                                <br><i style="border-bottom: 1px solid #D0D0D0;">Përshkrimi i rrjetit dhe/ose shërbimit që do të ofrohet:</i></br>
+                                <br>(Të jepen përshkrime të detajuara për secilin aktivitet të njoftuar duke specifikuar:</br>
+                                <ul class="browser-default" id="ulista">
+                                    <li>A do të përdoret rrjeti vetanak apo ndonjë rrjet tjetër</li>
+                                    <li>Teknologjia e cila do të përdoret, Radio frekuencat, të cilat planifikohen të përdoren</li>
+                                    <li>Lista e shërbimeve që planifikohen të ofrohen,</li>
+                                    <li>etj.</li>
+                                </ul>
+                                <br>Mund të përdoret ndonjë Shtojcë i veçantë në rast se hapësira nuk është e mjaftueshme)</br>
+                            </td>
+                            <td>
+                                <div class="input-field col s12">
+                                    <textarea id="textarea1" class="materialize-textarea" name="4-1-PershkrimiRrjetitOfrohet" class="validate" required></textarea>
+                                    <label for="textarea1">Pershkruaj</label>
+                                </div>
+                            </td>
                 </div>
-              </tr>
-              <tr>
-                <td style="border-right:1px solid #D0D0D0">
-                    <br><i style="border-bottom: 1px solid #D0D0D0;">Faza e Ofrimit:</i></br>
-                    <br>(Të specifikohet koha e parashikuar për fillimin e aktivitetit të komunikimeve elektronike)</br>
-                </td>
-                <td>
-                  <div class="input-field col s12">
-                    <label for="textarea2">Pershkruaj</label>
-                    <textarea id="textarea2" class="materialize-textarea" name="4-2-FazaOfrimit" class="validate" required></textarea>
-                  </div>
-                </td>
-            </tr>
-            </table>
-                <div class="col s12"> <a class="btn bt waves-effect waves-light" data-click="true" onclick="#sec5">Vazhdo!</a></div>
+                </tr>
+                <tr>
+                    <td style="border-right:1px solid #D0D0D0">
+                        <br><i style="border-bottom: 1px solid #D0D0D0;">Faza e Ofrimit:</i></br>
+                        <br>(Të specifikohet koha e parashikuar për fillimin e aktivitetit të komunikimeve elektronike)</br>
+                    </td>
+                    <td>
+                        <div class="input-field col s12">
+                            <label for="textarea2">Pershkruaj</label>
+                            <textarea id="textarea2" class="materialize-textarea" name="4-2-FazaOfrimit" class="validate" required></textarea>
+                        </div>
+                    </td>
+                </tr>
+                </table>
+                <div class="col s12"> <a class="btn bt waves-effect waves-light" data-click="true" id="btt4" onclick="validateForm(4, 33, 5, 0)">Vazhdo!</a></div>
+            </div>
             </div>
         </li>
         <li>
             <div class="collapsible-header" id="sec5"><span class="icon-number-five"></span> DOKUMENTET E BASHKANGJITURA:</div>
-            <div class="collapsible-body">
+            <div class="row collapsible-body">
+                <div class="col s12">
                     <table class="highlight">
-                      <thead><tr>
-                        <td><i>Dokumentet e bashkangjitura si shtojcë aplikacionit të Njoftimit:</i></td>
-                      </tr></thead>
-                      <tbody>
-                        <tr class="table-row">
-                            <td>
-                                <div class="col m12 s12">
-                                    <label class="lbl"> Kopje e certifikatës së regjistrimit të biznesit </label>
-                                    <div class="file-field input-field">
-                                        <div class="btn">
-                                            <span>File</span>
-                                            <input type="file" class="validate" >
-                                        </div>
-                                        <div class="file-path-wrapper">
-                                            <input class="file-path validate" type="text" placeholder="Kopje e certifikatës së regjistrimit të biznesit">
+                        <thead>
+                            <tr>
+                                <td><i>Dokumentet e bashkangjitura si shtojcë aplikacionit të Njoftimit:</i></td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="table-row">
+                                <td>
+                                    <div class="col m12 s12">
+                                        <label class="lbl"> Kopje e certifikatës së regjistrimit të biznesit </label>
+                                        <div class="file-field input-field">
+                                            <div class="btn">
+                                                <span>File</span>
+                                                <input type="file" class="validate">
+                                            </div>
+                                            <div class="file-path-wrapper">
+                                                <input class="file-path validate" type="text" placeholder="Kopje e certifikatës së regjistrimit të biznesit" onchange="ValidateSingleInput(this);">
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr class="table-row">
-                            <td>
-                                <div class="col m12 s12">
-                                    <label class="lbl"> Kopje e Certifikatës së numrit fiskal</label>
-                                    <div class="file-field input-field">
-                                        <div class="btn">
-                                            <span>File</span>
-                                            <input type="file" class="validate" >
-                                        </div>
-                                        <div class="file-path-wrapper">
+                                </td>
+                            </tr>
+                            <tr class="table-row">
+                                <td>
+                                    <div class="col m12 s12">
+                                        <label class="lbl"> Kopje e Certifikatës së numrit fiskal</label>
+                                        <div class="file-field input-field">
+                                            <div class="btn">
+                                                <span>File</span>
+                                                <input type="file" class="validate">
+                                            </div>
+                                            <div class="file-path-wrapper">
 
-                                            <input class="file-path validate" type="text" placeholder="Kopje e Certifikatës së numrit fiskal">
+                                                <input class="file-path validate" type="text" placeholder="Kopje e Certifikatës së numrit fiskal" onchange="ValidateSingleInput(this);">
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr class="table-row">
-                            <td>
-                                <div class="col m12 s12">
-                                    <label class="lbl"> Kopje e dokumentit ‘Informatë mbi biznesin</label>
-                                    <div class="file-field input-field">
-                                        <div class="btn">
-                                            <span>File</span>
-                                            <input type="file" class="validate" >
-                                        </div>
-                                        <div class="file-path-wrapper">
-                                            <input class="file-path validate" type="text" placeholder="Kopje e dokumentit ‘Informatë mbi biznesin">
+                                </td>
+                            </tr>
+                            <tr class="table-row">
+                                <td>
+                                    <div class="col m12 s12">
+                                        <label class="lbl"> Kopje e dokumentit ‘Informatë mbi biznesin</label>
+                                        <div class="file-field input-field">
+                                            <div class="btn">
+                                                <span>File</span>
+                                                <input type="file" class="validate">
+                                            </div>
+                                            <div class="file-path-wrapper">
+                                                <input class="file-path validate" type="text" placeholder="Kopje e dokumentit ‘Informatë mbi biznesin" onchange="ValidateSingleInput(this);">
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </td>
-                        </tr>
-                      </tbody>
+                                </td>
+                            </tr>
+                        </tbody>
                     </table>
                     <div class="col s12">
-                        <a class="btn bt waves-effect waves-light" data-click="true" onclick="#sec6">Vazhdo!</a>
+                        <a class="btn bt waves-effect waves-light" data-click="true" id="btt5" onclick="validateForm(5, 38, 6, 2)">Vazhdo!</a>
                     </div>
+                </div>
             </div>
         </li>
         <li>
             <div class="collapsible-header" id="sec6"><span class="icon-number-six"></span> KONFIRMIMI I NJOFTIMIT:</div>
-            <div class="collapsible-body">
-                <div class="col m12 l12 s12">
+            <div class="row collapsible-body">
+                <div class="col s12">
                     <h6>Ndermarrja kerkon qe t'i leshohet certifikata e konfirmimit te njoftimit per ofrimin e rrjeteve dhe/ose sherbimeve publike te komunikimeve elektronike te njoftuara permes ketij formulari:</h6>
                     <br>
-                    <input name="6-Po" type="radio" id="test1" />
-                    <label for="test1">PO</label>
-                    </br>
-                    <br>
-                    <input name="6-Jo" type="radio" id="test2" />
-                    <label for="test2">JO</label>
+                    <div class="bt">
+                        <input name="6-Po/Jo" type="radio" id="test1" />
+                        <label for="test1">PO</label>
+                        <input name="6-Po/Jo" type="radio" id="test2" />
+                        <label for="test2">JO</label>
+                    </div>
                     </br>
                 </div>
-                <div class="col s12"> <a class="btn bt waves-effect waves-light" data-click="true" onclick="#fund">Vazhdo!</a></div>
+                <div class="col s12"> <a class="btn bt waves-effect waves-light" id="btt6" data-click="true" onclick="validateForm(6,47, 7, 2)">Vazhdo!</a></div>
             </div>
         </li>
         <li>
-            <div class="collapsible-header" id="fund"><span class="icon-number-seven"></span> Perfundim</div>
-            <div class="collapsible-body">
+            <div class="collapsible-header" id="sec7"><span class="icon-number-seven"></span> Perfundim</div>
+            <div class="row collapsible-body">
                 <div class="input-field col s12">
                 </div>
                 <a class="modal-trigger waves-effect waves-light btn bt" href="#modal1">Perfundo</a>
