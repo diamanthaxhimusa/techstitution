@@ -1,0 +1,70 @@
+{% extends 'layout.html' %}
+
+{% block content%}
+
+<form action="{{url_for('.upload_file')}}" method="POST" enctype = "multipart/form-data">
+              <table class="highlight">
+                  <thead>
+                      <tr>
+                          <td><i>Dokumentet e bashkangjitura si shtojcë aplikacionit të Njoftimit:</i></td>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr class="table-row">
+                          <td>
+                              <div class="col m12 s12">
+                                  <label class="lbl"> Kopje e certifikatës së regjistrimit të biznesit </label>
+                                  <div class="file-field input-field">
+                                      <div class="btn">
+                                          <span>File</span>
+                                          <input type="file" class="validate" name="file1">
+                                      </div>
+                                      <div class="file-path-wrapper">
+                                          <input class="file-path validate" type="text" name="5-1-KopjeCertifikatesBiz" placeholder="Kopje e certifikatës së regjistrimit të biznesit" onchange="ValidateSingleInput(this);">
+                                      </div>
+                                  </div>
+                              </div>
+                          </td>
+                      </tr>
+                      <tr class="table-row">
+                          <td>
+                              <div class="col m12 s12">
+                                  <label class="lbl"> Kopje e Certifikatës së numrit fiskal</label>
+                                  <div class="file-field input-field">
+                                      <div class="btn">
+                                          <span>File</span>
+                                          <input type="file" class="validate" name="file2">
+                                      </div>
+                                      <div class="file-path-wrapper">
+
+                                          <input class="file-path validate" type="text" name="5-2-KopjeCertifikatesFiskal" placeholder="Kopje e Certifikatës së numrit fiskal" onchange="ValidateSingleInput(this);">
+                                      </div>
+                                  </div>
+                              </div>
+                          </td>
+                      </tr>
+                      <tr class="table-row">
+                          <td>
+                              <div class="col m12 s12">
+                                  <label class="lbl"> Kopje e dokumentit ‘Informatë mbi biznesin</label>
+                                  <div class="file-field input-field">
+                                      <div class="btn">
+                                          <span>File</span>
+                                          <input type="file" class="validate" name="file3">
+                                      </div>
+                                      <div class="file-path-wrapper">
+                                          <input class="file-path validate" type="text" name="5-3-KopjeDok" placeholder="Kopje e dokumentit ‘Informatë mbi biznesin" onchange="ValidateSingleInput(this);">
+                                      </div>
+                                  </div>
+                              </div>
+                          </td>
+                      </tr>
+                  </tbody>
+              </table>
+              <div class="col s12">
+                  <a class="btn bt waves-effect waves-light" data-click="true" id="btt5" onclick="validateForm(5, 38, 6, 2)">Vazhdo!</a>
+              </div>
+   <input type = "submit"/>
+</form>
+
+{% endblock %}

@@ -1,6 +1,9 @@
+import os
 from flask import Blueprint, render_template, request, redirect, url_for
 from app import mongo
 from bson import json_util, ObjectId
+from os.path import join, dirname, realpath
+from app import upload_folder
 
 mod_main = Blueprint('main', __name__)
 
@@ -9,20 +12,24 @@ def index():
     db = mongo.db.arkep
     if request.method == 'GET':
         return render_template('index.html')
-    elif request.method == 'POST':
+
+@mod_main.route('/upload')
+def upload_files():
+   return render_template('upload.html')
+
+@mod_main.route('/uploader', methods = ['GET', 'POST'])
+def upload_file():
+    db = mongo.db.arkep
+    if request.method == 'POST':
+        f1 = request.files['file1']
+        f1.save(os.path.join(upload_folder,f1.filename))
+        f2 = request.files['file2']
+        f2.save(os.path.join(upload_folder,f2.filename))
+        f3 = request.files['file3']
+        f3.save(os.path.join(upload_folder,f3.filename))
         data = request.form.to_dict()
         db.insert(data)
         return redirect(url_for('.listo'))
-
-@mod_main.route('/<string:id>', methods=['GET'])
-def get_doc(id):
-    db = mongo.db.arkep
-    if request.method == 'GET':
-        doc = db.find_one({"_id":ObjectId(id)})
-        doc_json = json_util.dumps(doc)
-        return render_template('doc.html', doc=doc)
-    else:
-        return "bad request"
 
 @mod_main.route('/operatoret',methods=['GET'])
 def listo():
@@ -45,9 +52,3 @@ def delete_document(id):
     db = mongo.db.arkep
     db.remove({"_id":ObjectId(id)})
     return redirect(url_for('.listo'))
-
-@mod_main.route('/arkep', methods=['GET','POST'])
-def arkep():
-    form = arkep()
-    # TODO: render arkep.html
-    # TODO: form.validate_on_submit()
