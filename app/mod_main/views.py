@@ -20,16 +20,27 @@ def upload_files():
 @mod_main.route('/uploader', methods = ['GET', 'POST'])
 def upload_file():
     db = mongo.db.arkep
+    emriOperatorit = request.values.get('1-1-EmriNdermarrsit')
+    directory = str(upload_folder) + emriOperatorit
+    if not os.path.exists(directory):
+        os.makedirs(directory)
     if request.method == 'POST':
         f1 = request.files['file1']
         f1.save(os.path.join(upload_folder,f1.filename))
+        f1.save(os.path.join(directory, f1.filename))
         f2 = request.files['file2']
-        f2.save(os.path.join(upload_folder,f2.filename))
+        f2.save(os.path.join(directory,f2.filename))
         f3 = request.files['file3']
-        f3.save(os.path.join(upload_folder,f3.filename))
+        f3.save(os.path.join(directory,f3.filename))
         data = request.form.to_dict()
         db.insert(data)
         return redirect(url_for('.listo'))
+#
+# @mod_main.route('/<path:filen>')
+# def file_download(filen):
+#     db = mongo.db.arkep
+#     filena= db.find_one({"5-1-KopjeCertifikatesBiz":filen})
+#     return url_for('upload_folder',filename='Diamanti/'+filen)
 
 @mod_main.route('/operatoret',methods=['GET'])
 def listo():

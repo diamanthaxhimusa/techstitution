@@ -12,7 +12,7 @@
             if ((i != 16 && i != 20) && inpData[i].value == "") {
                 var emri = document.getElementById("forma").elements[i].placeholder;
                 $('#modal2').modal('open');
-                document.getElementById('error').innerHTML = emri + messages[0] + inpData.length;
+                document.getElementById('error').innerHTML = emri + messages[0];
                 document.getElementById('btt' + id).setAttribute("dest", '');
                 document.getElementById('span' + id).setAttribute('class','');
                 return false;
@@ -89,9 +89,14 @@
             }
         });
     });
-</script>
+    $(document).on('keyup keypress', 'form input', function(e) {
+      if(e.which == 13) {
+        e.preventDefault();
+        return false;
+      }
+    });
 
-
+  </script>
 
 <!-- Modal Structure -->
 <div id="modal2" class="modal">
@@ -102,7 +107,6 @@
         <button class=" modal-action modal-close waves-effect waves-green btn-flat">OK</button>
     </div>
 </div>
-
 
 
 
@@ -475,7 +479,7 @@
                         </ul>
                     </div>
                     <div class="modal-footer">
-                        <button class="btn cyan waves-effect waves-light center" type="submit" id="buttoni" name="" method="POST">Submit
+                        <button class="btn cyan waves-effect waves-light center" id="form-button-submit">Submit
                       </button>
                     </div>
                 </div>
