@@ -35,7 +35,7 @@ def upload_file():
         data = request.form.to_dict()
         db.insert(data)
         return redirect(url_for('.listo'))
-#
+
 # @mod_main.route('/<path:filen>')
 # def file_download(filen):
 #     db = mongo.db.arkep
